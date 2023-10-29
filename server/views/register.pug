@@ -1,21 +1,20 @@
-h1 Register
+extends layout
 
-form(method='post', action='/register')
-  p
-    label(for='email') Email
-    br
-    input(type='email', id='email', name='email', required)
-  p
-    label(for='password') Password
-    br
-    input(type='password', id='password', name='password', required)
-  p
-    label(for='confirmPassword') Confirm Password
-    br
-    input(type='password', id='confirmPassword', name='confirmPassword', required)
-  p
-    input(type='submit', value='Register')
+block content
+    h1 Register
 
-div
-    p Already have an account?
-    a(href='/login') Login here
+    form#register-form
+    p
+        label(for='username') Username
+        br
+        input(type='username', id='username', name='username', required)
+    p
+        label(for='password') Password
+        br
+        input(type='password', id='password', name='password', required)
+    p
+        input(type='submit', value='Register')
+
+    div
+        p Already have an account?
+        a(href='/login') Login here
