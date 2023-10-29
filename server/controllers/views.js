@@ -3,11 +3,15 @@ exports.getIndex = (_, res) => {
 };
 
 exports.getLogin = (_, res) => {
-  res.render('login');
+  res.render('login', {
+    title: 'Login',
+  });
 };
 
 exports.getRegister = (_, res) => {
-  res.render('register');
+  res.render('register', {
+    title: 'Register',
+  });
 };
 
 exports.getDashboard = (_, res) => {
