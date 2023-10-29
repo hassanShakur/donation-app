@@ -128,3 +128,25 @@ exports.adminAuth = (req, res, next) => {
     next();
   });
 }
+
+exports.userAuth = (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(401).json({
+      status: 'error',
+      message: 'Unauthorized!',
+    });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+    if (err || decodedToken.role !== 'user') {
+      return res.status(401).json({
+        status: 'error',
+        message: 'Unauthorized!',
+      });
+    }
+
+    next();
+  });
+}
