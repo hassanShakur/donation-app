@@ -1,9 +1,12 @@
-const express = require('express')
-const setupApp = require('./appSetup')
+const express = require('express');
+const setupApp = require('./appSetup');
+const authRouter = require('./routers/auth');
 
-const app = express()
-app.use(express.json())
-setupApp(app)
+const app = express();
+app.use(express.json());
+setupApp(app);
+
+app.use('/api/auth', authRouter);
 
 process.on('unhandledRejection', (err) => {
   console.log(`An error occurred: ${err.message}`);
@@ -11,4 +14,3 @@ process.on('unhandledRejection', (err) => {
 });
 
 module.exports = app;
-
