@@ -12,15 +12,15 @@ exports.register = async (req, res, next) => {
     });
   }
 
-  if (password.length < 6) {
+  if (password.length < 4) {
     return res.status(400).json({
       status: 'error',
-      message: 'Password cannot be less than 6 chars!',
+      message: 'Password cannot be less than 4 chars!',
     });
   }
 
   try {
-    const hashedPass = bcrypt.hash(password, 12);
+    const hashedPass = await bcrypt.hash(password, 12);
     const user = await User.create({
       username,
       password: hashedPass,
@@ -51,7 +51,7 @@ exports.login = async (req, res, next) => {
   }
 
   try {
-    const user = User.findOne({ username, password });
+    const user = await User.findOne({ username });
 
     if (!user) {
       return res.status(401).json({
@@ -66,17 +66,20 @@ exports.login = async (req, res, next) => {
       return res.status(400).json({
         status: 'error',
         message: 'Invalid username or password!',
-        user,
       });
     }
 
     const maxAge = process.env.JWT_MAX_AGE; // in sec
     const jwtSecret = process.env.JWT_SECRET;
-    const { _id, username, role } = user;
+    const { _id, role } = user;
 
-    const token = jwt.sign({ id: _id, username, role }, jwtSecret, {
-      expiresIn: maxAge,
-    });
+    const token = jwt.sign(
+      { id: _id, username: user.username, role },
+      jwtSecret,
+      {
+        expiresIn: maxAge,
+      }
+    );
 
     res.cookie('jwt', token, {
       httpOnly: true,
@@ -96,3 +99,32 @@ exports.login = async (req, res, next) => {
     });
   }
 };
+
+exports.adminAuth = (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(401).json({
+      status: 'error',
+      message: 'Unauthorized!',
+    });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+    if (err) {
+      return res.status(401).json({
+        status: 'error',
+        message: 'Unauthorized!',
+      });
+    }
+
+    if (decodedToken.role !== 'admin') {
+      return res.status(401).json({
+        status: 'error',
+        message: 'Unauthorized!',
+      });
+    }
+
+    next();
+  });
+}
