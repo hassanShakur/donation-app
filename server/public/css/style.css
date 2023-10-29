@@ -41,9 +41,10 @@ header ul li a:hover {
   color: #000;
 }
 
-/* Register */
+/* Register & login */
 
-#register {
+#register,
+#login {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -52,61 +53,62 @@ header ul li a:hover {
   height: 80vh;
 }
 
-#register h1 {
+#register h1,
+#login h1 {
   font-size: 2rem;
   font-weight: 500;
   margin-bottom: 2rem;
 }
 
-#register-form {
+#auth-form {
   width: 400px;
   padding: 2rem;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#register-form p {
+#auth-form p {
   margin-bottom: 1rem;
 }
 
-#register-form label {
+#auth-form label {
   display: block;
   margin-bottom: 0.5rem;
 }
 
-#register-form input {
+#auth-form input {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-#register-form input[type='submit'] {
+#auth-form input[type='submit'] {
   margin-top: 1rem;
   background-color: #333;
   color: #fff;
   cursor: pointer;
 }
 
-#register-form input[type='submit']:hover {
+#auth-form input[type='submit']:hover {
   background-color: #000;
 }
 
-.go-to-login {
+.go-to {
   margin-top: 1rem;
   text-align: center;
 }
 
-.go-to-login p {
+.go-to p {
   margin-bottom: 0.5rem;
 }
 
-.go-to-login a {
+.go-to a {
   text-decoration: none;
   color: #333;
 }
 
-.go-to-login a:hover {
+.go-to a:hover {
   color: #000;
 }
 

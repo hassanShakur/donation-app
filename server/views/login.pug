@@ -1,8 +1,8 @@
-extends layout
+extends layout 
 
 block content
-    div#register
-        h1 Register
+    div#login
+        h1 Login
 
         form#auth-form
             p
@@ -14,8 +14,8 @@ block content
                 br
                 input(type='password', id='password', name='password', required)
             p
-                input(type='submit', value='Register')
+                input(type='submit', value='Login')
 
         div.go-to
-            p Already have an account?
-            a(href='/login') Login here
+            p Don't have an account?
+            a(href='/register') Register here
