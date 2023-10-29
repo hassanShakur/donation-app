@@ -21,7 +21,7 @@ const registerUser = async (username, password) => {
   }
 };
 
-registerForm.addEventListener('submit', async (e) => {
+registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const username = registerForm.querySelector('#username').value;

@@ -2,6 +2,7 @@ const express = require('express');
 const setupApp = require('./appSetup');
 const cookieParser = require('cookie-parser');
 const authRouter = require('./routers/auth');
+const viewRouter = require('./routers/views');
 
 const app = express();
 
@@ -14,32 +15,8 @@ app.use(express.static('public'));
 
 setupApp(app);
 
+app.use('/', viewRouter)
 app.use('/api/auth', authRouter);
-
-app.get('/', (_, res) => {
-  res.render('index');
-});
-
-app.get('/login', (_, res) => {
-  res.render('login');
-});
-
-app.get('/register', (_, res) => {
-  res.render('register');
-});
-
-app.get('/dashboard', (_, res) => {
-  res.render('dashboard');
-});
-
-app.get('/profile', (_, res) => {
-  res.render('profile');
-});
-
-app.get('/logout', (_, res) => {
-  res.cookie('jwt', '', { maxAge: 1 });
-  res.redirect('/login');
-});
 
 process.on('unhandledRejection', (err) => {
   console.log(`An error occurred: ${err.message}`);
