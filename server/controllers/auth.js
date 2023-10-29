@@ -1,7 +1,15 @@
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
 
 exports.register = async (req, res, next) => {
   const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'Please provide username and password!',
+    });
+  }
 
   if (password.length < 6) {
     return res.status(400).json({
@@ -11,7 +19,8 @@ exports.register = async (req, res, next) => {
   }
 
   try {
-    const user = await User.create({ username, password });
+    const hashedPass = bcrypt.hash(password, 12);
+    const user = await User.create({ username, password: hashedPass });
 
     res.status(201).json({
       status: 'success',
@@ -47,11 +56,19 @@ exports.login = async (req, res, next) => {
       });
     }
 
-    res.status(200).json({
-      status: 'success',
-      message: 'Login successful!',
-      user,
-    });
+    const validPass = await bcrypt.compare(password, user.password)
+
+    validPass
+      ? res.status(200).json({
+          status: 'success',
+          message: 'Login successful!',
+          user,
+        })
+      : res.status(400).json({
+          status: 'error',
+          message: 'Invalid username or password!',
+          user,
+        });
   } catch (err) {
     res.status(401).json({
       status: 'error',
