@@ -38,7 +38,6 @@ app.get('/logout', (_, res) => {
   res.redirect('/login');
 });
 
-
 process.on('unhandledRejection', (err) => {
   console.log(`An error occurred: ${err.message}`);
   server.close(() => process.exit(1));
