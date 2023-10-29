@@ -1,5 +1,4 @@
 const registerForm = document.querySelector('#register-form');
-console.log(registerForm, 'hello');
 
 const registerUser = async (username, password) => {
   try {
@@ -10,6 +9,7 @@ const registerUser = async (username, password) => {
     });
 
     const data = await res.json();
+    console.log(data);
 
     if (data.status === 'success') {
       location.assign('/dashboard');

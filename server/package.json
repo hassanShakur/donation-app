@@ -1,14 +1,14 @@
 {
-  "name": "accessibility-toolkit",
+  "name": "donation-app",
   "version": "1.0.0",
-  "description": "An AI powered accessibility toolkit for websites.",
+  "description": "A donation app to help redistribution of resources.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hassanShakur/accessibility-toolkit.git"
+    "url": "git+https://github.com/hassanShakur/donation-app.git"
   },
   "keywords": [
     "accessibility"
@@ -16,9 +16,9 @@
   "author": "Hassan Shakur",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hassanShakur/accessibility-toolkit/issues"
+    "url": "https://github.com/hassanShakur/donation-app/issues"
   },
-  "homepage": "https://github.com/hassanShakur/accessibility-toolkit#readme",
+  "homepage": "https://github.com/hassanShakur/donation-app#readme",
   "dependencies": {
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
