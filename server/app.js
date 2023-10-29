@@ -2,6 +2,7 @@ const express = require('express')
 const setupApp = require('./appSetup')
 
 const app = express()
+app.use(express.json())
 setupApp(app)
 
 process.on('unhandledRejection', (err) => {
