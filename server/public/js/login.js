@@ -22,7 +22,7 @@ const loginUser = async (username, password) => {
   }
 };
 
-loginForm.addEventListener('submit', (e) => {
+loginForm?.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const username = loginForm.querySelector('#username').value;

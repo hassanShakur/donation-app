@@ -15,33 +15,8 @@ app.use(express.static('public'));
 
 setupApp(app);
 
-app.use('/api/auth', authRouter);
 app.use('/', viewsRouter);
-
-// app.get('/', (_, res) => {
-//   res.render('index');
-// });
-
-// app.get('/login', (_, res) => {
-//   res.render('login');
-// });
-
-// app.get('/register', (_, res) => {
-//   res.render('register');
-// });
-
-// app.get('/dashboard', (_, res) => {
-//   res.render('dashboard');
-// });
-
-// app.get('/profile', (_, res) => {
-//   res.render('profile');
-// });
-
-// app.get('/logout', (_, res) => {
-//   res.cookie('jwt', '', { maxAge: 1 });
-//   res.redirect('/login');
-// });
+app.use('/api/auth', authRouter);
 
 process.on('unhandledRejection', (err) => {
   console.log(`An error occurred: ${err.message}`);
