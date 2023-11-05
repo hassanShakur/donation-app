@@ -12,7 +12,9 @@ const registerUser = async ({fname, lname, email, password}) => {
     console.log(data);
 
     if (data.status === 'success') {
-      location.assign('/dashboard');
+      data.user.role === 'admin'
+        ? location.assign('/dashboard')
+        : location.assign('/home');
     } else {
       throw new Error(data.message);
     }

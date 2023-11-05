@@ -83,6 +83,8 @@ exports.login = async (req, res, next) => {
       }
     );
 
+    req.currentUser = user;
+
     res.cookie('jwt', token, {
       httpOnly: true,
       maxAge: maxAge * 1000, // in ms

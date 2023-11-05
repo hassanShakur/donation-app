@@ -1,0 +1,55 @@
+extends layout
+
+block content
+    //- h1= title
+    div#donations
+        div#donation-form
+            h2 Create a new donation
+            
+            form#donate-form
+                input(type='text', id='name', name='name', placeholder='Donation Name', required)
+                input(type='text', id='image', name='image', placeholder='Image URL', required)
+                input(type='text', id='description', name='description', placeholder='Description', required)
+                input(type='submit', value='Create')
+        
+        div#donations
+            h2 All donations
+            ul#donation-list
+                //- each donation in donations
+                //-     li
+                //-         a(href='/donations/' + donation._id)
+                //-             img(src=donation.image, alt=donation.name)
+                //-             h3= donation.name
+                //-             p= donation.description
+
+                //- create test donations for now
+                li
+                    a(href='/donations/1')
+                        img(src='https://source.unsplash.com/random/1', alt='Test donation')
+                        h5 Test donation
+                        p Test description
+                li
+                    a(href='/donations/2')
+                        img(src='https://source.unsplash.com/random/2', alt='Test donation')
+                        h5 Test donation
+                        p Test description
+                li
+                    a(href='/donations/3')
+                        img(src='https://source.unsplash.com/random/3', alt='Test donation')
+                        h5 Test donation
+                        p Test description
+                li
+                    a(href='/donations/4')
+                        img(src='https://source.unsplash.com/random/4', alt='Test donation')
+                        h5 Test donation
+                        p Test description
+                li
+                    a(href='/donations/5')
+                        img(src='https://source.unsplash.com/random/5', alt='Test donation')
+                        h5 Test donation
+                        p Test description
+                li
+                    a(href='/donations/6')
+                        img(src='https://source.unsplash.com/random/6', alt='Test donation')
+                        h5 Test donation
+                        p Test description

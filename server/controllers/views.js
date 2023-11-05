@@ -18,8 +18,12 @@ exports.getDashboard = (_, res) => {
   res.render('dashboard');
 };
 
-exports.getProfile = (_, res) => {
-  res.render('profile');
+exports.getProfile = (req, res) => {
+  const user = req.currentUser;
+  res.render('home', {
+    title: 'Profile',
+    user,
+  });
 };
 
 exports.getLogout = (_, res) => {
