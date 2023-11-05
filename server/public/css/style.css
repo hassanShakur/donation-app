@@ -162,10 +162,11 @@ footer p {
 #donations {
   display: grid;
   align-items: center;
+  gap: 4rem;
   height: auto;
-  width: 90%;
-  padding: 3rem;
-  margin: 0 auto;
+  width: 90vw;
+  padding: 0;
+  margin: 2rem auto;
 }
 
 #donation-form {
@@ -206,11 +207,12 @@ footer p {
 }
 
 #donation-list {
-  /* make the number of columns dynamic */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  row-gap: 3rem;
   margin-top: 2rem;
+  width: 100%;
 }
 
 #donation-list h2 {
