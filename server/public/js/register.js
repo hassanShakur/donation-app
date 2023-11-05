@@ -9,10 +9,9 @@ const registerUser = async (username, password) => {
     });
 
     const data = await res.json();
-    console.log(data);
 
     if (data.status === 'success') {
-      location.assign('/dashboard');
+      // location.assign('/dashboard');
     } else {
       throw new Error(data.message);
     }

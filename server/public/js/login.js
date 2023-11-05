@@ -13,9 +13,9 @@ const loginUser = async (username, password) => {
 
     if (data.status !== 'success') throw new Error(data.message);
     
-    data.user.role === 'admin'
-      ? location.assign('/dashboard')
-      : location.assign('/profile');
+    // data.user.role === 'admin'
+      // ? location.assign('/dashboard')
+      // : location.assign('/profile');
 
   } catch (err) {
     console.log(`An error occurred: ${err.message}`);

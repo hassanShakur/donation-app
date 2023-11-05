@@ -2,20 +2,23 @@ extends layout
 
 block content
     div#register
-        h1 Register
+        include _authtext
+
 
         form.auth-form#register-form
+            h1 Register
+
             p
-                label(for='username') Username
+                label(for='username') Email
                 br
-                input(type='username', id='username', name='username', required)
+                input(type='username', id='username', name='username', placeholder='jane@doe.com', required)
             p
                 label(for='password') Password
                 br
-                input(type='password', id='password', name='password', required)
+                input(type='password', id='password', name='password', placeholder='৹৹৹৹৹৹৹৹', required)
             p
                 input(type='submit', value='Register')
 
-        div.go-to
-            p Already have an account?
-            a(href='/login') Login here
+            div.go-to
+                p Already have an account?
+                a(href='/login') Login here
