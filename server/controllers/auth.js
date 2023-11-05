@@ -3,12 +3,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res, next) => {
-  const { username, password } = req.body;
+  const { fname, lname, email, password } = req.body;
 
-  if (!username || !password) {
+  if (!fname || !lname || !email || !password) {
     return res.status(400).json({
       status: 'error',
-      message: 'Please provide username and password!',
+      message: 'Please provide fname, lname, email and password!',
     });
   }
 
@@ -22,7 +22,9 @@ exports.register = async (req, res, next) => {
   try {
     const hashedPass = await bcrypt.hash(password, 12);
     const user = await User.create({
-      username,
+      fname,
+      lname,
+      email,
       password: hashedPass,
     });
 
@@ -41,17 +43,17 @@ exports.register = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username || !password) {
+  if (!email || !password) {
     return res.status(400).json({
       status: 'error',
-      message: 'Please provide username and password!',
+      message: 'Please provide email and password!',
     });
   }
 
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(401).json({
@@ -65,7 +67,7 @@ exports.login = async (req, res, next) => {
     if (!validPass) {
       return res.status(400).json({
         status: 'error',
-        message: 'Invalid username or password!',
+        message: 'Invalid email or password!',
       });
     }
 
@@ -74,7 +76,7 @@ exports.login = async (req, res, next) => {
     const { _id, role } = user;
 
     const token = jwt.sign(
-      { id: _id, username: user.username, role },
+      { id: _id, email: user.email, role },
       jwtSecret,
       {
         expiresIn: maxAge,
@@ -127,7 +129,7 @@ exports.adminAuth = (req, res, next) => {
 
     next();
   });
-}
+};
 
 exports.userAuth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -149,4 +151,4 @@ exports.userAuth = (req, res, next) => {
 
     next();
   });
-}
+};

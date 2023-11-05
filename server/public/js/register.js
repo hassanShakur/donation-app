@@ -1,17 +1,18 @@
 const registerForm = document.querySelector('#register-form');
 
-const registerUser = async (username, password) => {
+const registerUser = async ({fname, lname, email, password}) => {
   try {
     const res = await fetch('/api/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ fname, lname, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     const data = await res.json();
+    console.log(data);
 
     if (data.status === 'success') {
-      // location.assign('/dashboard');
+      location.assign('/dashboard');
     } else {
       throw new Error(data.message);
     }
@@ -23,9 +24,10 @@ const registerUser = async (username, password) => {
 registerForm?.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const username = registerForm.querySelector('#username').value;
+  const fname = registerForm.querySelector('#fname').value;
+  const lname = registerForm.querySelector('#lname').value;
+  const email = registerForm.querySelector('#email').value;
   const password = registerForm.querySelector('#password').value;
-  console.log({ username, password });
 
-  registerUser(username, password);
+  registerUser({fname, lname, email, password});
 });
