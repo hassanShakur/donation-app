@@ -16,11 +16,15 @@ body {
   background-color: #f5f5f5;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  height: 80px;
+  width: 100vw;
+  padding: 0 5vw;
+  margin: 0 auto;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -32,19 +36,19 @@ header h1 {
 
 header ul {
   display: flex;
+  gap: 1rem;
+}
+
+header li {
   list-style: none;
 }
 
-header ul li {
-  margin-left: 1rem;
-}
-
-header ul li a {
+header a {
   text-decoration: none;
   color: #333;
 }
 
-header ul li a:hover {
+header a:hover {
   color: #000;
 }
 
@@ -182,24 +186,35 @@ footer p {
 }
 
 #donate-form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* make inputs inline but responsive */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  row-gap: 2rem;
+}
+
+#donate-form label {
+  display: block;
+  margin-bottom: 0.2rem;
 }
 
 #donate-form input {
-  width: 20%;
-  padding: 0.5rem;
+  width: 100%;
+  padding: 0.2rem 0.6rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 #donate-form input[type='submit'] {
-  width: 10%;
-  margin-top: 0;
+  margin-top: 1rem;
+  padding: 0 0;
   background-color: var(--sec-color);
   color: #fff;
   cursor: pointer;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 5px;
+  justify-self: end;
 }
 
 #donate-form input[type='submit']:hover {
