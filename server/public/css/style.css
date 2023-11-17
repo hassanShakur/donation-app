@@ -54,7 +54,6 @@ header a:hover {
 }
 
 /* Register & login */
-
 #register,
 #login {
   display: flex;
