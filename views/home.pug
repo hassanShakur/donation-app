@@ -6,11 +6,7 @@ block content
         div#donation-form
             h2 Create a new donation
             
-            form#donate-form
-                input(type='text', id='name', name='name', placeholder='Donation Name', required)
-                input(type='text', id='image', name='image', placeholder='Image URL', required)
-                input(type='text', id='description', name='description', placeholder='Description', required)
-                input(type='submit', value='Create')
+            include _donation_form
         
         div#donation-items
             h2 All donations
