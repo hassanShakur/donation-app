@@ -110,7 +110,7 @@ exports.adminAuth = (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       status: 'error',
-      message: 'Unauthorized!',
+      message: 'Please login to continue!!',
     });
   }
 
@@ -118,7 +118,7 @@ exports.adminAuth = (req, res, next) => {
     if (err) {
       return res.status(401).json({
         status: 'error',
-        message: 'Unauthorized!',
+        message: 'Please login to continue!!',
       });
     }
 
@@ -139,7 +139,7 @@ exports.userAuth = (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       status: 'error',
-      message: 'Unauthorized!',
+      message: 'Please login to continue!!',
     });
   }
 
@@ -147,7 +147,7 @@ exports.userAuth = (req, res, next) => {
     if (err || decodedToken.role !== 'user') {
       return res.status(401).json({
         status: 'error',
-        message: 'Unauthorized!',
+        message: 'Please login to continue!!',
       });
     }
 
@@ -161,7 +161,7 @@ exports.protect = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       status: 'error',
-      message: 'Unauthorized!',
+      message: 'Please login to continue!!',
     });
   }
 
@@ -187,6 +187,29 @@ exports.protect = async (req, res, next) => {
       }
 
       req.user = user;
+
+      next();
+    }
+  );
+};
+
+// Only for rendered pages, no errors!
+exports.isLoggedIn = async (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (!token) return next();
+
+  jwt.verify(
+    token,
+    process.env.JWT_SECRET,
+    async (err, decodedToken) => {
+      if (err) return next();
+
+      const user = await User.findById(decodedToken.id);
+
+      if (!user) return next();
+
+      req.locals.user = user;
 
       next();
     }
