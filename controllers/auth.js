@@ -154,3 +154,41 @@ exports.userAuth = (req, res, next) => {
     next();
   });
 };
+
+exports.protect = async (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(401).json({
+      status: 'error',
+      message: 'Unauthorized!',
+    });
+  }
+
+  jwt.verify(
+    token,
+    process.env.JWT_SECRET,
+    async (err, decodedToken) => {
+      if (err) {
+        return res.status(401).json({
+          status: 'error',
+          message:
+            'You are not logged in!, Please login to get access.',
+        });
+      }
+
+      const user = await User.findById(decodedToken.id);
+
+      if (!user) {
+        return res.status(401).json({
+          status: 'error',
+          message: 'Token owner does not exist!',
+        });
+      }
+
+      req.user = user;
+
+      next();
+    }
+  );
+};

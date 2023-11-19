@@ -14,6 +14,13 @@ app.use(express.static('public'));
 
 setupApp(app);
 
+// Test middleware
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  console.log(req.cookies);
+  next();
+});
+
 app.use('/', viewsRouter);
 app.use('/api/auth', authRouter);
 
