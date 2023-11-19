@@ -186,7 +186,7 @@ exports.protect = async (req, res, next) => {
         });
       }
 
-      req.user = user;
+      // req.user = user;
 
       next();
     }
@@ -209,9 +209,9 @@ exports.isLoggedIn = async (req, res, next) => {
 
       if (!user) return next();
 
-      req.locals.user = user;
+      res.locals.loggedUser = user;
 
-      next();
+      return next();
     }
   );
 };
