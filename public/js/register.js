@@ -1,35 +1,30 @@
-const registerForm = document.querySelector('#register-form');
+import axios from 'axios';
 
-const registerUser = async ({fname, lname, email, password}) => {
+export const registerUser = async ({
+  fname,
+  lname,
+  email,
+  password,
+}) => {
   try {
-    const res = await fetch('/api/auth/register', {
+    const res = await axios({
       method: 'POST',
-      body: JSON.stringify({ fname, lname, email, password }),
-      headers: { 'Content-Type': 'application/json' },
+      url: '/api/auth/register',
+      data: {
+        fname,
+        lname,
+        email,
+        password,
+      },
     });
 
-    const data = await res.json();
-    console.log(data);
+    if (res.data.status !== 'success')
+      throw new Error(res.data.message);
 
-    if (data.status === 'success') {
-      data.user.role === 'admin'
-        ? location.assign('/dashboard')
-        : location.assign('/home');
-    } else {
-      throw new Error(data.message);
-    }
+    res.data.user.role === 'admin'
+      ? location.assign('/dashboard')
+      : location.assign('/home');
   } catch (err) {
     console.log(`An error occurred: ${err.message}`);
   }
 };
-
-registerForm?.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const fname = registerForm.querySelector('#fname').value;
-  const lname = registerForm.querySelector('#lname').value;
-  const email = registerForm.querySelector('#email').value;
-  const password = registerForm.querySelector('#password').value;
-
-  registerUser({fname, lname, email, password});
-});
