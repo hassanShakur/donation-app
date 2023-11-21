@@ -193,6 +193,19 @@ exports.protect = async (req, res, next) => {
   );
 };
 
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.currentUser.role)) {
+      return res.status(403).json({
+        status: 'error',
+        message: 'You do not have permission to perform this action!',
+      });
+    }
+
+    next();
+  };
+};
+
 // Only for rendered pages, no errors!
 exports.isLoggedIn = async (req, res, next) => {
   const token = req.cookies.jwt;
