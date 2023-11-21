@@ -1,5 +1,9 @@
-exports.getIndex = (_, res) => {
-  res.render('index');
+exports.getIndex = (req, res) => {
+  const user = req.currentUser;
+  res.render('home', {
+    title: 'Home',
+    user,
+  });
 };
 
 exports.getLogin = (_, res) => {
@@ -20,7 +24,7 @@ exports.getDashboard = (_, res) => {
 
 exports.getProfile = (req, res) => {
   const user = req.currentUser;
-  res.render('home', {
+  res.render('index', {
     title: 'Profile',
     user,
   });

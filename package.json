@@ -5,14 +5,10 @@
   "source": "public/js/index.js",
   "main": "public/js/dist/main.js",
   "module": "public/js/dist/bundle.js",
-  "browserslist": "> 0.25%, last 2 versions, not dead",
-  "engines": {
-    "node": ">=16.0.0"
-  },
   "scripts": {
     "dev": "nodemon server.js",
-    "watch:js": "parcel watch --no-source-maps",
-    "build:js": "parcel build --no-source-maps"
+    "watch:js": "parcel watch",
+    "build:js": "parcel build"
   },
   "repository": {
     "type": "git",
@@ -41,7 +37,6 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "buffer": "^6.0.3",
     "parcel": "^2.10.3"
   }
 }

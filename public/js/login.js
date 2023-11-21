@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { showAlert } from './alert.js';
 
 export const loginUser = async (email, password) => {
   try {
@@ -14,10 +14,19 @@ export const loginUser = async (email, password) => {
     if (res.data.status !== 'success')
       throw new Error(res.data.message);
 
-    res.data.user.role === 'admin'
-      ? location.assign('/dashboard')
-      : location.assign('/home');
+    if (data.status === 'success') {
+      showAlert('success', data.message);
+
+      window.setTimeout(() => {
+        data.user.role === 'admin'
+          ? location.assign('/dashboard')
+          : location.assign('/');
+      }, 1500);
+    } else {
+      showAlert('error', data.message);
+    }
   } catch (err) {
+    showAlert('error', 'Something went wrong!');
     console.log(`An error occurred: ${err.message}`);
   }
 };

@@ -1,60 +1,87 @@
-import $3ujnu$axios from "axios";
+const $fc9f18cd978afa5b$export$de026b00723010c1 = (type, msg)=>{
+    $fc9f18cd978afa5b$export$516836c6a9dfc573();
+    const markup = `<div class="alert alert--${type}">${msg}</div>`;
+    document.querySelector("body").insertAdjacentHTML("afterbegin", markup);
+    window.setTimeout($fc9f18cd978afa5b$export$516836c6a9dfc573, 5000);
+};
+const $fc9f18cd978afa5b$export$516836c6a9dfc573 = ()=>{
+    const el = document.querySelector(".alert");
+    if (el) el.parentElement.removeChild(el);
+};
 
 
-const $a216a14235bf272a$export$692b4a7cc7a486ce = async (email, password)=>{
+const $e33d9ff231aec008$export$692b4a7cc7a486ce = async (email, password)=>{
     try {
-        const res = await (0, $3ujnu$axios)({
+        const res = await fetch("/api/auth/login", {
             method: "POST",
-            url: "/api/auth/login",
-            data: {
+            body: JSON.stringify({
                 email: email,
                 password: password
+            }),
+            headers: {
+                "Content-Type": "application/json"
             }
         });
-        if (res.data.status !== "success") throw new Error(res.data.message);
-        res.data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/home");
+        const data = await res.json();
+        console.log(data);
+        if (data.status === "success") {
+            (0, $fc9f18cd978afa5b$export$de026b00723010c1)("success", data.message);
+            window.setTimeout(()=>{
+                data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/");
+            }, 1500);
+        } else (0, $fc9f18cd978afa5b$export$de026b00723010c1)("error", data.message);
     } catch (err) {
+        (0, $fc9f18cd978afa5b$export$de026b00723010c1)("error", "Something went wrong!");
         console.log(`An error occurred: ${err.message}`);
     }
 };
 
 
 
-const $48562ed6454d45ae$export$16015adca85344a = async ({ fname: fname, lname: lname, email: email, password: password })=>{
+const $063fc4c5866f54d6$export$16015adca85344a = async ({ fname: fname, lname: lname, email: email, password: password })=>{
     try {
-        const res = await (0, $3ujnu$axios)({
+        const res = await fetch("/api/auth/register", {
             method: "POST",
-            url: "/api/auth/register",
-            data: {
+            body: JSON.stringify({
                 fname: fname,
                 lname: lname,
                 email: email,
                 password: password
+            }),
+            headers: {
+                "Content-Type": "application/json"
             }
         });
-        if (res.data.status !== "success") throw new Error(res.data.message);
-        res.data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/home");
+        const data = await res.json();
+        console.log(data);
+        if (data.status === "success") {
+            (0, $fc9f18cd978afa5b$export$de026b00723010c1)("success", data.message);
+            window.setTimeout(()=>{
+                data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/");
+            }, 1500);
+        } else (0, $fc9f18cd978afa5b$export$de026b00723010c1)("error", data.message);
     } catch (err) {
+        (0, $fc9f18cd978afa5b$export$de026b00723010c1)("error", "Something went wrong!");
         console.log(`An error occurred: ${err.message}`);
     }
 };
 
 
-const $b6e713abe599629a$var$loginForm = document.querySelector("#login-form");
-const $b6e713abe599629a$var$registerForm = document.querySelector("#register-form");
-$b6e713abe599629a$var$loginForm?.addEventListener("submit", (e)=>{
+const $1cd085a7ac742057$var$loginForm = document.querySelector("#login-form");
+const $1cd085a7ac742057$var$registerForm = document.querySelector("#register-form");
+$1cd085a7ac742057$var$loginForm?.addEventListener("submit", (e)=>{
     e.preventDefault();
-    const email = $b6e713abe599629a$var$loginForm.querySelector("#email").value;
-    const password = $b6e713abe599629a$var$loginForm.querySelector("#password").value;
-    (0, $a216a14235bf272a$export$692b4a7cc7a486ce)(email, password);
+    const email = $1cd085a7ac742057$var$loginForm.querySelector("#email").value;
+    const password = $1cd085a7ac742057$var$loginForm.querySelector("#password").value;
+    (0, $e33d9ff231aec008$export$692b4a7cc7a486ce)(email, password);
 });
-$b6e713abe599629a$var$registerForm?.addEventListener("submit", (e)=>{
+$1cd085a7ac742057$var$registerForm?.addEventListener("submit", (e)=>{
     e.preventDefault();
-    const fname = $b6e713abe599629a$var$registerForm.querySelector("#fname").value;
-    const lname = $b6e713abe599629a$var$registerForm.querySelector("#lname").value;
-    const email = $b6e713abe599629a$var$registerForm.querySelector("#email").value;
-    const password = $b6e713abe599629a$var$registerForm.querySelector("#password").value;
-    (0, $48562ed6454d45ae$export$16015adca85344a)({
+    const fname = $1cd085a7ac742057$var$registerForm.querySelector("#fname").value;
+    const lname = $1cd085a7ac742057$var$registerForm.querySelector("#lname").value;
+    const email = $1cd085a7ac742057$var$registerForm.querySelector("#email").value;
+    const password = $1cd085a7ac742057$var$registerForm.querySelector("#password").value;
+    (0, $063fc4c5866f54d6$export$16015adca85344a)({
         fname: fname,
         lname: lname,
         email: email,
@@ -63,3 +90,4 @@ $b6e713abe599629a$var$registerForm?.addEventListener("submit", (e)=>{
 });
 
 
+//# sourceMappingURL=bundle.js.map
