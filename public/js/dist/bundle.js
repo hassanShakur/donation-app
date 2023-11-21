@@ -35,6 +35,17 @@ const $e33d9ff231aec008$export$692b4a7cc7a486ce = async (email, password)=>{
         console.log(`An error occurred: ${err.message}`);
     }
 };
+const $e33d9ff231aec008$export$e8df664d4863167e = async ()=>{
+    try {
+        const res = await fetch("/api/auth/logout");
+        const data = await res.json();
+        console.log(data);
+        if (data.status === "success") location.reload(true);
+    } catch (err) {
+        (0, $fc9f18cd978afa5b$export$de026b00723010c1)("error", "Something went wrong!");
+        console.log(`An error occurred: ${err.message}`);
+    }
+};
 
 
 
@@ -69,6 +80,7 @@ const $063fc4c5866f54d6$export$16015adca85344a = async ({ fname: fname, lname: l
 
 const $1cd085a7ac742057$var$loginForm = document.querySelector("#login-form");
 const $1cd085a7ac742057$var$registerForm = document.querySelector("#register-form");
+const $1cd085a7ac742057$var$logoutBtn = document.querySelector("#logout-btn");
 $1cd085a7ac742057$var$loginForm?.addEventListener("submit", (e)=>{
     e.preventDefault();
     const email = $1cd085a7ac742057$var$loginForm.querySelector("#email").value;
@@ -88,6 +100,7 @@ $1cd085a7ac742057$var$registerForm?.addEventListener("submit", (e)=>{
         password: password
     });
 });
+$1cd085a7ac742057$var$logoutBtn?.addEventListener("click", (0, $e33d9ff231aec008$export$e8df664d4863167e));
 
 
 //# sourceMappingURL=bundle.js.map

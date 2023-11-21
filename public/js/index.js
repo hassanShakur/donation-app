@@ -1,7 +1,8 @@
 const loginForm = document.querySelector('#login-form');
 const registerForm = document.querySelector('#register-form');
+const logoutBtn = document.querySelector('#logout-btn');
 
-import { loginUser } from './login.js';
+import { loginUser, logoutUser } from './login.js';
 import { registerUser } from './register.js';
 
 loginForm?.addEventListener('submit', (e) => {
@@ -22,3 +23,5 @@ registerForm?.addEventListener('submit', (e) => {
 
   registerUser({ fname, lname, email, password });
 });
+
+logoutBtn?.addEventListener('click', logoutUser);

@@ -14,6 +14,5 @@ router.use(authController.protect);
 router.get('/', viewsController.getIndex);
 router.get('/dashboard', viewsController.getDashboard);
 router.get('/profile', viewsController.getProfile);
-router.get('/logout', viewsController.getLogout);
 
 module.exports = router;

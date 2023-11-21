@@ -215,3 +215,11 @@ exports.isLoggedIn = async (req, res, next) => {
     }
   );
 };
+
+exports.logout = (req, res, next) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.status(200).json({
+    status: 'success',
+    message: 'Logout successful!',
+  });
+};

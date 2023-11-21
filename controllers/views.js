@@ -29,8 +29,3 @@ exports.getProfile = (req, res) => {
     user,
   });
 };
-
-exports.getLogout = (_, res) => {
-  res.cookie('jwt', '', { maxAge: 1 });
-  res.redirect('/login');
-};
