@@ -12,7 +12,8 @@ export const loginUser = async (email, password) => {
     console.log(data);
 
     if (data.status === 'success') {
-      showAlert('success', 'Logged in successfully!');
+      showAlert('success', data.message);
+
       window.setTimeout(() => {
         data.user.role === 'admin'
           ? location.assign('/dashboard')
@@ -22,6 +23,7 @@ export const loginUser = async (email, password) => {
       showAlert('error', data.message);
     }
   } catch (err) {
+    showAlert('error', 'Something went wrong!');
     console.log(`An error occurred: ${err.message}`);
   }
 };

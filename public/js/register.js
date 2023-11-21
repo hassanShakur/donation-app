@@ -1,3 +1,5 @@
+import { showAlert } from './alert.js';
+
 export const registerUser = async ({
   fname,
   lname,
@@ -15,13 +17,18 @@ export const registerUser = async ({
     console.log(data);
 
     if (data.status === 'success') {
-      data.user.role === 'admin'
-        ? location.assign('/dashboard')
-        : location.assign('/home');
+      showAlert('success', data.message);
+
+      window.setTimeout(() => {
+        data.user.role === 'admin'
+          ? location.assign('/dashboard')
+          : location.assign('/');
+      }, 1500);
     } else {
-      throw new Error(data.message);
+      showAlert('error', data.message);
     }
   } catch (err) {
+    showAlert('error', 'Something went wrong!');
     console.log(`An error occurred: ${err.message}`);
   }
 };

@@ -273,3 +273,34 @@ footer p {
   opacity: 0.6;
   line-height: 2;
 }
+
+/* alert */
+.alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  border-radius: 5px;
+}
+
+.alert--success {
+  background-color: #4caf50;
+}
+
+.alert--error {
+  background-color: #f44336;
+}
+
+.alert--info {
+  background-color: #2196f3;
+}
+
+.alert--warning {
+  background-color: #ff9800;
+}

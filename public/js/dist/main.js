@@ -25,15 +25,17 @@ const $70af9284e599e604$export$692b4a7cc7a486ce = async (email, password)=>{
         const data = await res.json();
         console.log(data);
         if (data.status === "success") {
-            (0, $c67cb762f0198593$export$de026b00723010c1)("success", "Logged in successfully!");
+            (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
             window.setTimeout(()=>{
                 data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/");
             }, 1500);
         } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
     } catch (err) {
+        (0, $c67cb762f0198593$export$de026b00723010c1)("error", "Something went wrong!");
         console.log(`An error occurred: ${err.message}`);
     }
 };
+
 
 
 const $ac7ca8669a3fb450$export$16015adca85344a = async ({ fname: fname, lname: lname, email: email, password: password })=>{
@@ -52,9 +54,14 @@ const $ac7ca8669a3fb450$export$16015adca85344a = async ({ fname: fname, lname: l
         });
         const data = await res.json();
         console.log(data);
-        if (data.status === "success") data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/home");
-        else throw new Error(data.message);
+        if (data.status === "success") {
+            (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
+            window.setTimeout(()=>{
+                data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/");
+            }, 1500);
+        } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
     } catch (err) {
+        (0, $c67cb762f0198593$export$de026b00723010c1)("error", "Something went wrong!");
         console.log(`An error occurred: ${err.message}`);
     }
 };
