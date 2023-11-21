@@ -186,7 +186,6 @@ footer p {
 }
 
 #donate-form {
-  /* make inputs inline but responsive */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
@@ -240,6 +239,7 @@ footer p {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  max-width: 350px;
 }
 
 #donation-list li a {

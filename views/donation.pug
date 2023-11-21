@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    div#donation
+        div#donation-image
+            img(src=donation.image, alt=donation.name)
+        div#donation-info
+            h2= donation.name
+            p= donation.description
+
+            - const date = new Date(donation.createdAt)
+            p= `Created on ${date.toLocaleDateString()}`

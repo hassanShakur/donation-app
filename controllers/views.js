@@ -1,7 +1,15 @@
-const User = require('../models/User');
 const Donation = require('../models/Donation');
 
 exports.getIndex = async (req, res) => {
+  const donations = await Donation.find();
+
+  res.render('index', {
+    title: 'Donation App',
+    donations,
+  });
+};
+
+exports.getHome = async (req, res) => {
   const user = req.user;
   const myDonations = await Donation.find({ user: req.user.id });
 
@@ -33,5 +41,14 @@ exports.getProfile = (req, res) => {
   res.render('index', {
     title: 'Profile',
     user,
+  });
+};
+
+exports.getDonation = async (req, res) => {
+  const donation = await Donation.findOne({ slug: req.params.slug });
+
+  res.render('donation', {
+    title: donation.name,
+    donation,
   });
 };

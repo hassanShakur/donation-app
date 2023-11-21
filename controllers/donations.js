@@ -3,6 +3,7 @@ const Donation = require('../models/Donation');
 exports.getAllDonations = async (req, res) => {
   try {
     const donations = await Donation.find();
+    
     res.status(200).json({
       status: 'success',
       results: donations.length,
@@ -21,6 +22,7 @@ exports.getAllDonations = async (req, res) => {
 exports.getMyDonations = async (req, res) => {
   try {
     const donations = await Donation.find({ user: req.user.id });
+
     res.status(200).json({
       status: 'success',
       results: donations.length,
@@ -38,8 +40,8 @@ exports.getMyDonations = async (req, res) => {
 
 exports.getDonation = async (req, res) => {
   try {
-    // find donation from slug
-    const donation = await Donation.findOne({ slug: req.params.slug });
+    const donation = await Donation.findById(req.params.id);
+
     res.status(200).json({
       status: 'success',
       data: {

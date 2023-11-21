@@ -13,7 +13,7 @@ router
   );
 
 router
-  .route('/:slug')
+  .route('/:id')
   .get(donationsController.getDonation)
   .delete(
     authController.protect,

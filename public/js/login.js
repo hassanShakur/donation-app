@@ -15,9 +15,7 @@ export const loginUser = async (email, password) => {
       showAlert('success', data.message);
 
       window.setTimeout(() => {
-        data.user.role === 'admin'
-          ? location.assign('/dashboard')
-          : location.assign('/');
+        location.assign('/home');
       }, 1500);
     } else {
       showAlert('error', data.message);

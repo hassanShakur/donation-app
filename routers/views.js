@@ -9,10 +9,13 @@ router.use(authController.isLoggedIn);
 router.get('/login', viewsController.getLogin);
 router.get('/register', viewsController.getRegister);
 
+router.get('/', viewsController.getIndex);
+
 router.use(authController.protect);
 
-router.get('/', viewsController.getIndex);
+router.get('/home', viewsController.getHome);
 router.get('/dashboard', viewsController.getDashboard);
 router.get('/profile', viewsController.getProfile);
+router.get('/donations/:slug', viewsController.getDonation);
 
 module.exports = router;

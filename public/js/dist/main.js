@@ -27,7 +27,7 @@ const $70af9284e599e604$export$692b4a7cc7a486ce = async (email, password)=>{
         if (data.status === "success") {
             (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
             window.setTimeout(()=>{
-                data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/");
+                location.assign("/home");
             }, 1500);
         } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
     } catch (err) {
@@ -68,7 +68,7 @@ const $ac7ca8669a3fb450$export$16015adca85344a = async ({ fname: fname, lname: l
         if (data.status === "success") {
             (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
             window.setTimeout(()=>{
-                data.user.role === "admin" ? location.assign("/dashboard") : location.assign("/");
+                location.assign("/home");
             }, 1500);
         } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
     } catch (err) {
