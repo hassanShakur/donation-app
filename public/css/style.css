@@ -174,7 +174,8 @@ footer p {
   height: auto;
   width: 90vw;
   padding: 0;
-  margin: 2rem auto;
+  justify-self: flex-start;
+  margin: 3rem auto;
 }
 
 #donation-form {

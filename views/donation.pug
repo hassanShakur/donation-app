@@ -9,4 +9,5 @@ block content
             p= donation.description
 
             - const date = new Date(donation.createdAt)
-            p= `Created on ${date.toLocaleDateString()}`
+            - const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+            p= `Created on ${formattedDate}`
