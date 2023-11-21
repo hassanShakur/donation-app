@@ -1,4 +1,4 @@
-const Donation = require('../models/donation');
+const Donation = require('../models/Donation');
 
 exports.getAllDonations = async (req, res) => {
   try {
@@ -18,9 +18,28 @@ exports.getAllDonations = async (req, res) => {
   }
 };
 
+exports.getMyDonations = async (req, res) => {
+  try {
+    const donations = await Donation.find({ user: req.user.id });
+    res.status(200).json({
+      status: 'success',
+      results: donations.length,
+      data: {
+        donations,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
 exports.getDonation = async (req, res) => {
   try {
-    const donation = await Donation.findById(req.params.id);
+    // find donation from slug
+    const donation = await Donation.findOne({ slug: req.params.slug });
     res.status(200).json({
       status: 'success',
       data: {
@@ -43,6 +62,7 @@ exports.createDonation = async (req, res) => {
       name,
       image,
       description,
+      user: req.user.id,
     });
 
     res.status(201).json({

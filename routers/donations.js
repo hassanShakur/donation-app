@@ -6,14 +6,14 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(donationsController.getAllDonations)
+  .get(donationsController.getMyDonations)
   .post(
     authController.protect,
     donationsController.createDonation
   );
 
 router
-  .route('/:id')
+  .route('/:slug')
   .get(donationsController.getDonation)
   .delete(
     authController.protect,

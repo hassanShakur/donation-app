@@ -1,8 +1,14 @@
-exports.getIndex = (req, res) => {
-  const user = req.currentUser;
+const User = require('../models/User');
+const Donation = require('../models/Donation');
+
+exports.getIndex = async (req, res) => {
+  const user = req.user;
+  const myDonations = await Donation.find({ user: req.user.id });
+
   res.render('home', {
     title: 'Home',
     user,
+    donations: myDonations,
   });
 };
 
@@ -23,7 +29,7 @@ exports.getDashboard = (_, res) => {
 };
 
 exports.getProfile = (req, res) => {
-  const user = req.currentUser;
+  const user = req.user;
   res.render('index', {
     title: 'Profile',
     user,

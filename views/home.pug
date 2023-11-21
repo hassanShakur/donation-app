@@ -11,17 +11,9 @@ block content
         div#donation-items
             h2 All donations
             ul#donation-list
-                //- each donation in donations
-                //-     li
-                //-         a(href='/donations/' + donation._id)
-                //-             img(src=donation.image, alt=donation.name)
-                //-             h3= donation.name
-                //-             p= donation.description
-
-                //- create test donations for now
-                each index in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                each donation in donations
                     li
-                        a(href='/donations/' + index)
-                            img(src='https://source.unsplash.com/random/' + index, alt='Test donation')
-                            h5 Test donation
-                            p Test description
+                        a(href='/donations/' + donation._id)
+                            img(src=donation.image, alt=donation.name)
+                            h3= donation.name
+                            p= donation.description
