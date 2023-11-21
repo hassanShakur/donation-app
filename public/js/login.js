@@ -1,7 +1,6 @@
-const loginForm = document.querySelector('#login-form');
 import { showAlert } from './alert.js';
 
-const loginUser = async (email, password) => {
+export const loginUser = async (email, password) => {
   try {
     const res = await fetch('/api/auth/login', {
       method: 'POST',
@@ -22,21 +21,7 @@ const loginUser = async (email, password) => {
     } else {
       showAlert('error', data.message);
     }
-
-
-
-    // if (data.status !== 'success') throw new Error(data.message);
-
-    
   } catch (err) {
     console.log(`An error occurred: ${err.message}`);
   }
 };
-
-loginForm?.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const email = loginForm.querySelector('#email').value;
-  const password = loginForm.querySelector('#password').value;
-  loginUser(email, password);
-});

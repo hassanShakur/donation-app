@@ -98,7 +98,7 @@ exports.login = async (req, res, next) => {
   } catch (err) {
     res.status(401).json({
       status: 'error',
-      message: 'User creation failed!',
+      message: 'User login failed! Please try again!',
       error: err.message,
     });
   }
