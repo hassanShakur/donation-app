@@ -8,9 +8,9 @@ const donationSchema = mongoose.Schema({
   image: {
     type: String,
   },
-  amount: {
-    type: Number,
-    required: [true, 'Please provide a donation amount'],
+  description: {
+    type: String,
+    required: [true, 'Please provide a donation description'],
   },
   date: {
     type: Date,
