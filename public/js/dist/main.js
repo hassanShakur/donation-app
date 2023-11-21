@@ -1,4 +1,4 @@
-var $8hTDb$axios = require("axios");
+var $7GTCu$axios = require("axios");
 
 
 function $parcel$interopDefault(a) {
@@ -7,7 +7,7 @@ function $parcel$interopDefault(a) {
 
 const $b140200631cd2662$export$692b4a7cc7a486ce = async (email, password)=>{
     try {
-        const res = await (0, ($parcel$interopDefault($8hTDb$axios)))({
+        const res = await (0, ($parcel$interopDefault($7GTCu$axios)))({
             method: "POST",
             url: "/api/auth/login",
             data: {
@@ -26,7 +26,7 @@ const $b140200631cd2662$export$692b4a7cc7a486ce = async (email, password)=>{
 
 const $198a7b8d9e9045b8$export$16015adca85344a = async ({ fname: fname, lname: lname, email: email, password: password })=>{
     try {
-        const res = await (0, ($parcel$interopDefault($8hTDb$axios)))({
+        const res = await (0, ($parcel$interopDefault($7GTCu$axios)))({
             method: "POST",
             url: "/api/auth/register",
             data: {
