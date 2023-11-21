@@ -1,4 +1,5 @@
 const loginForm = document.querySelector('#login-form');
+import { showAlert } from './alert.js';
 
 const loginUser = async (email, password) => {
   try {
@@ -11,11 +12,22 @@ const loginUser = async (email, password) => {
     const data = await res.json();
     console.log(data);
 
-    if (data.status !== 'success') throw new Error(data.message);
+    if (data.status === 'success') {
+      showAlert('success', 'Logged in successfully!');
+      window.setTimeout(() => {
+        data.user.role === 'admin'
+          ? location.assign('/dashboard')
+          : location.assign('/');
+      }, 1500);
+    } else {
+      showAlert('error', data.message);
+    }
 
-    data.user.role === 'admin'
-    ? location.assign('/dashboard')
-    : location.assign('/home');
+
+
+    // if (data.status !== 'success') throw new Error(data.message);
+
+    
   } catch (err) {
     console.log(`An error occurred: ${err.message}`);
   }

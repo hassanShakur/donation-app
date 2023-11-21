@@ -2,9 +2,13 @@
   "name": "donation-app",
   "version": "1.0.0",
   "description": "A donation app to help redistribution of resources.",
-  "main": "server.js",
+  "source": "public/js/index.js",
+  "main": "public/js/dist/main.js",
+  "module": "public/js/dist/bundle.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "watch:js": "parcel watch",
+    "build:js": "parcel build"
   },
   "repository": {
     "type": "git",
@@ -31,5 +35,8 @@
     "mongoose": "^7.6.3",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "parcel": "^2.10.3"
   }
 }
