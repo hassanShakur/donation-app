@@ -59,3 +59,19 @@ exports.createDonation = async (req, res) => {
     });
   }
 };
+
+exports.deleteDonation = async (req, res) => {
+  try {
+    await Donation.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: 'success',
+      message: 'Donation deleted successfully',
+      data: null,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};

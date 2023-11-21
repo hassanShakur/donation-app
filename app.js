@@ -3,6 +3,7 @@ const setupApp = require('./appSetup');
 const cookieParser = require('cookie-parser');
 const authRouter = require('./routers/auth');
 const viewsRouter = require('./routers/views');
+const donationsRouter = require('./routers/donations');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/auth', authRouter);
+app.use('/api/donations', donationsRouter);
 app.use('/', viewsRouter);
 
 process.on('unhandledRejection', (err) => {
