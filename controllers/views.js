@@ -53,3 +53,9 @@ exports.getDonation = async (req, res) => {
     donation,
   });
 };
+
+exports.getCreateOrganization = (req, res) => {
+  res.render('createOrganization', {
+    title: 'Create Organization',
+  });
+};

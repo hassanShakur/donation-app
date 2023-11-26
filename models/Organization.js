@@ -10,6 +10,12 @@ const organizationSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please provide a organization description'],
     },
+    assignedDonations: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Donation',
+      },
+    ],
     slug: String,
     createdAt: {
       type: Date,
