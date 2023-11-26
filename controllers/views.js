@@ -1,4 +1,5 @@
 const Donation = require('../models/Donation');
+const Organization = require('../models/Organization');
 
 exports.getIndex = async (req, res) => {
   const donations = await Donation.find();
@@ -47,15 +48,37 @@ exports.getProfile = (req, res) => {
 
 exports.getDonation = async (req, res) => {
   const donation = await Donation.findOne({ slug: req.params.slug });
+  const organizations = await Organization.find();
 
   res.render('donation', {
     title: donation.name,
     donation,
+    organizations,
   });
 };
 
 exports.getCreateOrganization = (req, res) => {
   res.render('createOrganization', {
     title: 'Create Organization',
+  });
+};
+
+exports.getOrganizations = async (req, res) => {
+  const organizations = await Organization.find();
+
+  res.render('organizations', {
+    title: 'Organizations',
+    organizations,
+  });
+};
+
+exports.getOrganization = async (req, res) => {
+  const organization = await Organization.findOne({
+    slug: req.params.slug,
+  });
+
+  res.render('organization', {
+    title: organization.name,
+    organization,
   });
 };

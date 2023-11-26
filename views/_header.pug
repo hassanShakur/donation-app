@@ -13,6 +13,12 @@ header.header
             //- logout btn logout-btn
             li
                 button#logout-btn(type='button') Logout
+
+            if loggedUser.role === 'admin'
+                li
+                    a(href='/admin') Admin
+                li
+                    a(href='/organizations/create') Create Organization
         else
             li
                 a(href='/login') Login

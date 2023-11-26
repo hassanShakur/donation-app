@@ -20,6 +20,10 @@ const donationSchema = mongoose.Schema(
       required: [true, 'Donation must belong to a user'],
     },
     slug: String,
+    isAssigned: {
+      type: Boolean,
+      default: false,
+    },
     createdAt: {
       type: Date,
       default: Date.now,

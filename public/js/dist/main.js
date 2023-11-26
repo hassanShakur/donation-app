@@ -107,9 +107,35 @@ const $9364e95f3e432484$export$882c490fde6b3ea = async (name, image, description
 };
 
 
+
+const $fb5a0cf1308e7551$export$34c6178bfd248df3 = async (name, image, description)=>{
+    console.log(name, image, description);
+    const res = await fetch("/api/organizations", {
+        method: "POST",
+        body: JSON.stringify({
+            name: name,
+            image: image,
+            description: description
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.status === "success") {
+        (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
+        window.setTimeout(()=>{
+            location.assign("/organizations");
+        }, 1500);
+    } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
+};
+
+
 const $d0f7ce18c37ad6f6$var$loginForm = document.querySelector("#login-form");
 const $d0f7ce18c37ad6f6$var$registerForm = document.querySelector("#register-form");
 const $d0f7ce18c37ad6f6$var$donateForm = document.querySelector("#donate-form");
+const $d0f7ce18c37ad6f6$var$createOrganizationForm = document.querySelector("#organization-form");
 const $d0f7ce18c37ad6f6$var$logoutBtn = document.querySelector("#logout-btn");
 $d0f7ce18c37ad6f6$var$loginForm?.addEventListener("submit", (e)=>{
     e.preventDefault();
@@ -136,6 +162,13 @@ $d0f7ce18c37ad6f6$var$donateForm?.addEventListener("submit", (e)=>{
     const image = $d0f7ce18c37ad6f6$var$donateForm.querySelector("#donation-image").value;
     const description = $d0f7ce18c37ad6f6$var$donateForm.querySelector("#donation-description").value;
     (0, $9364e95f3e432484$export$882c490fde6b3ea)(name, image, description);
+});
+$d0f7ce18c37ad6f6$var$createOrganizationForm?.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const name = $d0f7ce18c37ad6f6$var$createOrganizationForm.querySelector("#name").value;
+    const image = $d0f7ce18c37ad6f6$var$createOrganizationForm.querySelector("#image").value;
+    const description = $d0f7ce18c37ad6f6$var$createOrganizationForm.querySelector("#description").value;
+    (0, $fb5a0cf1308e7551$export$34c6178bfd248df3)(name, image, description);
 });
 $d0f7ce18c37ad6f6$var$logoutBtn?.addEventListener("click", (0, $70af9284e599e604$export$e8df664d4863167e));
 
