@@ -193,6 +193,19 @@ exports.protect = async (req, res, next) => {
   );
 };
 
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        status: 'error',
+        message: 'You do not have permission to perform this action!',
+      });
+    }
+
+    next();
+  };
+};
+
 // Only for rendered pages, no errors!
 exports.isLoggedIn = async (req, res, next) => {
   const token = req.cookies.jwt;
@@ -214,4 +227,12 @@ exports.isLoggedIn = async (req, res, next) => {
       return next();
     }
   );
+};
+
+exports.logout = (req, res, next) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.status(200).json({
+    status: 'success',
+    message: 'Logout successful!',
+  });
 };

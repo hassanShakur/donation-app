@@ -1,8 +1,16 @@
 const loginForm = document.querySelector('#login-form');
 const registerForm = document.querySelector('#register-form');
+const donateForm = document.querySelector('#donate-form');
+const createOrganizationForm = document.querySelector(
+  '#organization-form'
+);
 
-import { loginUser } from './login.js';
+const logoutBtn = document.querySelector('#logout-btn');
+
+import { loginUser, logoutUser } from './login.js';
 import { registerUser } from './register.js';
+import { createDonation } from './newDonation.js';
+import { createOrganization } from './newOrganization.js';
 
 loginForm?.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -22,3 +30,28 @@ registerForm?.addEventListener('submit', (e) => {
 
   registerUser({ fname, lname, email, password });
 });
+
+donateForm?.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = donateForm.querySelector('#donation-name').value;
+  const image = donateForm.querySelector('#donation-image').value;
+  const description = donateForm.querySelector(
+    '#donation-description'
+  ).value;
+
+  createDonation(name, image, description);
+});
+
+createOrganizationForm?.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = createOrganizationForm.querySelector('#name').value;
+  const image = createOrganizationForm.querySelector('#image').value;
+  const description =
+    createOrganizationForm.querySelector('#description').value;
+
+  createOrganization(name, image, description);
+});
+
+logoutBtn?.addEventListener('click', logoutUser);

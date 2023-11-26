@@ -3,15 +3,22 @@ header.header
     ul.nav
         if loggedUser
             li
-                a(href='/') Home
+                a(href='/home') Home
             li
                 a(href='/search') Search
             li
                 a(href='/donate') Donate
             li
                 a(href='/profile') Profile
+            //- logout btn logout-btn
             li
-                a(href='/logout') Logout
+                button#logout-btn(type='button') Logout
+
+            if loggedUser.role === 'admin'
+                li
+                    a(href='/admin') Admin
+                li
+                    a(href='/organizations/create') Create Organization
         else
             li
                 a(href='/login') Login
