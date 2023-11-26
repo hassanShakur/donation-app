@@ -2,4 +2,32 @@ extends layout
 
 block content
     div#profile-page
+        //- user action tabs on the left (settings, donations, etc.)
+        div#profile-tabs
+            div#profile-tabs-container
+                div.profile-tab
+                    a(href='/profile') Settings
+                div.profile-tab
+                    a(href='/donations') Donations
+                div.profile-tab
+                    a(href='/logout') Logout
+
+            //- Show admin actions if user is admin
+            if user.role === 'admin'
+                div#profile-tabs-container
+                    div.profile-tab
+                        a(href='/admin') Admin
+                    div.profile-tab
+                        a(href='/admin/assign') Assign Donations
+
+        //- user info on the right
+        div#profile-info
+            div#profile-info-header
+                div#profile-avatar
+                    img(src=user.avatar, alt=user.name)
+                div#profile-name
+                    h1= user.name
+                    p= user.email
+
+            //- div#profile-info-body
     

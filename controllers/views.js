@@ -12,11 +12,12 @@ exports.getIndex = async (req, res) => {
 exports.getHome = async (req, res) => {
   const user = req.user;
   const myDonations = await Donation.find({ user: req.user.id });
+  const allDonations = await Donation.find();
 
   res.render('home', {
     title: 'Home',
     user,
-    donations: myDonations,
+    donations: user.role === 'admin' ? allDonations : myDonations,
   });
 };
 
@@ -38,7 +39,7 @@ exports.getDashboard = (_, res) => {
 
 exports.getProfile = (req, res) => {
   const user = req.user;
-  res.render('index', {
+  res.render('profile', {
     title: 'Profile',
     user,
   });
