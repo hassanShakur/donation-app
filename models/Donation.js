@@ -45,10 +45,5 @@ donationSchema.pre('save', function (next) {
   next();
 });
 
-donationSchema.post('save', function (doc, next) {
-  console.log(doc);
-  next();
-});
-
 const Donation = mongoose.model('donation', donationSchema);
 module.exports = Donation;
