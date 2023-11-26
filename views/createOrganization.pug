@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    //- form to create a new organization
+    div#organization-form-container
+        h1 Create Organization
+        form#organization-form
+            div.form-group
+                label(for='name') Name
+                input#name.form-control(type='text', name='name', placeholder='Enter organization name')
+            div.form-group
+                label(for='description') Description
+                textarea#description.form-control(name='description', rows='3', placeholder='Enter organization description')
+            div.form-group
+                label(for='image') Image
+                input#image.form-control(type='text', name='image', placeholder='Image url')
+                //- input#image.form-control-file(type='file', name='image')
+            button#organization-submit-btn.btn.btn-primary(type='submit') Submit
