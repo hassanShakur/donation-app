@@ -111,3 +111,12 @@ exports.getOrganization = async (req, res) => {
     orgDonations: donations,
   });
 };
+
+exports.getUsers = async (req, res) => {
+  const users = await User.find();
+
+  res.render('users', {
+    title: 'Users',
+    users,
+  });
+};

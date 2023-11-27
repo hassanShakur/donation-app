@@ -2,6 +2,7 @@ const express = require('express');
 const setupApp = require('./appSetup');
 const cookieParser = require('cookie-parser');
 const authRouter = require('./routers/auth');
+const usersRouter = require('./routers/users');
 const viewsRouter = require('./routers/views');
 const donationsRouter = require('./routers/donations');
 const organizationsRouter = require('./routers/organizations');
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 // 
 
 app.use('/api/auth', authRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/donations', donationsRouter);
 app.use('/api/organizations', organizationsRouter);
 app.use('/', viewsRouter);

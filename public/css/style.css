@@ -883,3 +883,91 @@ footer p {
 #donation-form button:hover {
   background-color: var(--sec-light);
 }
+
+/* Users page */
+#users {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  row-gap: 3rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 2rem auto;
+  justify-self: flex-start;
+  align-self: flex-start;
+  margin-bottom: auto;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  max-width: 350px;
+  padding-bottom: 1rem;
+}
+
+.user-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}
+
+.user-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-details h2 {
+  font-size: 1.6rem;
+}
+
+.user-details h3 {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  line-height: 2;
+}
+
+.user-details button {
+  padding: 0.5rem 1rem;
+  background-color: var(--sec-color);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.user-details button:hover {
+  background-color: var(--sec-light);
+}
+
+
+
+
+
+/* //- users page
+block content
+    #users 
+        each user in users
+            .user
+                .user-image
+                    img(src=user.image, alt=user.name)
+                .user-details
+                    h2= user.name
+                    h3= user.email
+                    h3= user.role
+                    button.btn.btn-danger(type='submit') Delete */

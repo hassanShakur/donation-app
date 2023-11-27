@@ -1,0 +1,14 @@
+extends layout
+
+//- users page
+block content
+    #users 
+        each user in users
+            .user
+                .user-image
+                    img(src=user.image, alt=user.name)
+                .user-details
+                    h2= user.name
+                    h3= user.email
+                    h3= user.role
+                    //- button.btn.btn-danger(type='submit') Delete

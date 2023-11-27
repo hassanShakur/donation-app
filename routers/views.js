@@ -3,7 +3,7 @@ const router = express.Router();
 
 const viewsController = require('../controllers/views');
 const authController = require('../controllers/auth');
-const organizationController = require('../controllers/organization');
+const organizationController = require('../controllers/organizations');
 
 router.use(authController.isLoggedIn);
 
@@ -23,7 +23,11 @@ router.get(
   viewsController.getAdminDashboard
 );
 router.get('/donations/:slug', viewsController.getDonation);
-router.get('/donations', authController.restrictTo('admin'), viewsController.getDonations);
+router.get(
+  '/donations',
+  authController.restrictTo('admin'),
+  viewsController.getDonations
+);
 // router.get('/donations/create', viewsController.getCreateDonation);
 
 router.get(
@@ -34,5 +38,11 @@ router.get(
 
 router.get('/organizations', viewsController.getOrganizations);
 router.get('/organizations/:slug', viewsController.getOrganization);
+
+router.get(
+  '/users',
+  authController.restrictTo('admin'),
+  viewsController.getUsers
+);
 
 module.exports = router;
