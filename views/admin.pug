@@ -1,0 +1,29 @@
+extends layout
+
+//- admin page
+block content
+    div#admin
+        div#admin-details
+            //- admin details to the left
+            div#admin-header
+                h1 Admin Dashboard
+            div#admin-body
+                //- image of admin
+                img(src= admin.image, alt= admin.fname)
+                //- details - fname, lname, email
+                div#admin-details
+                    p Name: #{admin.fname} #{admin.lname}
+                    p Email: #{admin.email}
+
+
+        div#admin-actions
+            //- admin button actions to the right like create organization, assign roles, assign donations to organizations, etc.
+            div#admin-header
+                h1 Admin Actions
+            div#admin-body
+                a(href='/organizations/create') Create Organization
+                a(href='/organizations') View Organizations
+                a(href='/organizations/assign') Assign Organization Roles
+                a(href='/donations/assign') Assign Donations to Organizations
+                a(href='/donations') View Donations
+                a(href='/donations/assign') Assign Donations to Organizations
