@@ -15,7 +15,7 @@ export const createDonation = async (name, image, description) => {
       showAlert('success', data.message);
 
       window.setTimeout(() => {
-        location.assign('/');
+        location.assign('/home');
       }, 1500);
     } else {
       showAlert('error', data.message);

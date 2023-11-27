@@ -21,4 +21,11 @@ router
     donationsController.deleteDonation
   );
 
+router.patch(
+  '/:id/assignDonation',
+  authController.protect,
+  authController.restrictTo('admin'),
+  donationsController.assignDonation
+);
+
 module.exports = router;

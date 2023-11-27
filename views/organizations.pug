@@ -2,4 +2,65 @@ extends layout
 
 block content
     //- organizations list page
-    p Orgs
+    div#organizations
+        h1 Organizations
+        div#organizations-list
+            each organization in organizations
+                div.organization
+                    div.organization-name
+                        a(href='/organizations/' + organization._id) #{organization.name}
+                    div.organization-description
+                        p #{organization.description}
+                    div.organization-donations
+                        p #{organization.assignedDonations.length} donations
+                    div.organization-actions
+                        a(href='/organizations/' + organization._id + '/edit') Edit
+                        a(href='/organizations/' + organization._id + '/delete') Delete
+        div#organizations-actions
+            a(href='/organizations/new') New Organization
+    
+
+
+
+//-     const mongoose = require('mongoose');
+//- const slugify = require('slugify');
+
+//- const organizationSchema = mongoose.Schema(
+//-   {
+//-     name: {
+//-       type: String,
+//-       required: [true, 'Please provide a organization name'],
+//-     },
+//-     description: {
+//-       type: String,
+//-       required: [true, 'Please provide a organization description'],
+//-     },
+//-     assignedDonations: [
+//-       {
+//-         type: mongoose.Schema.ObjectId,
+//-         ref: 'Donation',
+//-       },
+//-     ],
+//-     slug: String,
+//-     createdAt: {
+//-       type: Date,
+//-       default: Date.now,
+//-       required: true,
+//-     },
+//-   },
+//-   {
+//-     toJSON: { virtuals: true },
+//-     toObject: { virtuals: true },
+//-   }
+//- );
+
+//- organizationSchema.pre('save', function (next) {
+//-   this.slug = slugify(this.name, { lower: true });
+//-   next();
+//- });
+
+//- const Organization = mongoose.model(
+//-   'organization',
+//-   organizationSchema
+//- );
+//- module.exports = Organization;

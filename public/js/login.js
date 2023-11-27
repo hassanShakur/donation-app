@@ -2,17 +2,14 @@ import { showAlert } from './alert.js';
 
 export const loginUser = async (email, password) => {
   try {
-    const res = await axios({
+    const res = await fetch('/api/auth/login', {
       method: 'POST',
-      url: '/api/auth/login',
-      data: {
-        email,
-        password,
-      },
+      body: JSON.stringify({ email, password }),
+      headers: { 'Content-Type': 'application/json' },
     });
 
-    if (res.data.status !== 'success')
-      throw new Error(res.data.message);
+    const data = await res.json();
+    console.log(data);
 
     if (data.status === 'success') {
       showAlert('success', data.message);

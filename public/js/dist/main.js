@@ -50,31 +50,26 @@ const $70af9284e599e604$export$e8df664d4863167e = async ()=>{
 
 
 const $ac7ca8669a3fb450$export$16015adca85344a = async ({ fname: fname, lname: lname, email: email, password: password })=>{
-    try {
-        const res = await fetch("/api/auth/register", {
-            method: "POST",
-            body: JSON.stringify({
-                fname: fname,
-                lname: lname,
-                email: email,
-                password: password
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        const data = await res.json();
-        console.log(data);
-        if (data.status === "success") {
-            (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
-            window.setTimeout(()=>{
-                location.assign("/home");
-            }, 1500);
-        } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
-    } catch (err) {
-        (0, $c67cb762f0198593$export$de026b00723010c1)("error", "Something went wrong!");
-        console.log(`An error occurred: ${err.message}`);
-    }
+    const res = await fetch("/api/auth/register", {
+        method: "POST",
+        body: JSON.stringify({
+            fname: fname,
+            lname: lname,
+            email: email,
+            password: password
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.status === "success") {
+        (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
+        window.setTimeout(()=>{
+            location.assign("/home");
+        }, 1500);
+    } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
 };
 
 
@@ -97,7 +92,7 @@ const $9364e95f3e432484$export$882c490fde6b3ea = async (name, image, description
         if (data.status === "success") {
             (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
             window.setTimeout(()=>{
-                location.assign("/");
+                location.assign("/home");
             }, 1500);
         } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
     } catch (err) {
@@ -132,10 +127,38 @@ const $fb5a0cf1308e7551$export$34c6178bfd248df3 = async (name, image, descriptio
 };
 
 
+
+const $db9d8be94c74bf47$export$5897fc3de1629af3 = async (organizationId, donationId)=>{
+    try {
+        const res = await fetch(`/api/donations/${donationId}/assignDonation`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                organizationId: organizationId
+            })
+        });
+        const data = await res.json();
+        console.log(data);
+        if (data.status === "success") {
+            (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
+            window.setTimeout(()=>{
+                location.reload(true);
+            }, 1500);
+        } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
+    } catch (err) {
+        (0, $c67cb762f0198593$export$de026b00723010c1)("error", "Something went wrong!");
+        console.log(`An error occurred: ${err.message}`);
+    }
+};
+
+
 const $d0f7ce18c37ad6f6$var$loginForm = document.querySelector("#login-form");
 const $d0f7ce18c37ad6f6$var$registerForm = document.querySelector("#register-form");
 const $d0f7ce18c37ad6f6$var$donateForm = document.querySelector("#donate-form");
 const $d0f7ce18c37ad6f6$var$createOrganizationForm = document.querySelector("#organization-form");
+const $d0f7ce18c37ad6f6$var$assignDonationForm = document.querySelector("#assign-donation-form");
 const $d0f7ce18c37ad6f6$var$logoutBtn = document.querySelector("#logout-btn");
 $d0f7ce18c37ad6f6$var$loginForm?.addEventListener("submit", (e)=>{
     e.preventDefault();
@@ -170,7 +193,37 @@ $d0f7ce18c37ad6f6$var$createOrganizationForm?.addEventListener("submit", (e)=>{
     const description = $d0f7ce18c37ad6f6$var$createOrganizationForm.querySelector("#description").value;
     (0, $fb5a0cf1308e7551$export$34c6178bfd248df3)(name, image, description);
 });
-$d0f7ce18c37ad6f6$var$logoutBtn?.addEventListener("click", (0, $70af9284e599e604$export$e8df664d4863167e));
+$d0f7ce18c37ad6f6$var$assignDonationForm?.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const organizationId = $d0f7ce18c37ad6f6$var$assignDonationForm.querySelector("#organization").value;
+    const donationId = $d0f7ce18c37ad6f6$var$assignDonationForm.querySelector("#donation-id").value;
+    (0, $db9d8be94c74bf47$export$5897fc3de1629af3)(organizationId, donationId);
+});
+$d0f7ce18c37ad6f6$var$logoutBtn?.addEventListener("click", (0, $70af9284e599e604$export$e8df664d4863167e)); // Donation details page
+ // extends layout
+ // block content
+ //     div#donation
+ //         div#donation-image
+ //             img(src=donation.image, alt=donation.name)
+ //         div#donation-info
+ //             h2= donation.name
+ //             p= donation.description
+ //             - const date = new Date(donation.createdAt)
+ //             - const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+ //             p= `Created on ${formattedDate}`
+ //             p= `Donated by ${donation.user.fname} ${donation.user.lname}`
+ //             if !donation.isAssigned
+ //                 form#assign-donation-form
+ //                         div.form-group
+ //                             //- hidden input to store the donation id
+ // input#donation-id(type='hidden', name='donationId', value=donation._id)
+ //                             select#organization.form-control(name='organization')
+ //                                 option(value='') Select an organization
+ //                                 each organization in organizations
+ //                                     option(value=organization._id)= organization.name
+ //                         button#assign-donation-submit-btn.btn.btn-primary(type='submit') Assign Donation
+ //             else
+ //                 p= `This donation is assigned to ${donation.organization.name}`
 
 
 //# sourceMappingURL=main.js.map
