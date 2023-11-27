@@ -47,6 +47,15 @@ exports.getProfile = (req, res) => {
   });
 };
 
+exports.getAdminDashboard = async (req, res) => {
+  const admin = await User.findById(req.user.id);
+
+  res.render('admin', {
+    title: 'Admin Dashboard',
+    admin,
+  });
+};
+
 exports.getDonation = async (req, res) => {
   const donation = await Donation.findOne({ slug: req.params.slug });
   const organizations = await Organization.find();
@@ -77,7 +86,9 @@ exports.getOrganization = async (req, res) => {
   const organization = await Organization.findOne({
     slug: req.params.slug,
   });
-  const donations = await Donation.find({ organization: organization.id });
+  const donations = await Donation.find({
+    organization: organization.id,
+  });
 
   res.render('organization', {
     title: organization.name,
