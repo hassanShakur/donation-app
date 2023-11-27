@@ -1,29 +1,37 @@
 extends layout
 
-//- admin page
+
 block content
-    div#admin
-        div#admin-details
-            //- admin details to the left
-            div#admin-header
-                h1 Admin Dashboard
-            div#admin-body
-                //- image of admin
-                img(src= admin.image, alt= admin.fname)
-                //- details - fname, lname, email
-                div#admin-details
-                    p Name: #{admin.fname} #{admin.lname}
-                    p Email: #{admin.email}
+	#admin-dashboard
+		.admin-details
+			.admin-image
+				img(src='/images/admin/admin-1.png' alt='user')
+			.admin-name
+				h2 #{loggedUser.name}
+			.admin-email
+				h3 #{loggedUser.email}
+		.admin-actions
+			h3 Admin Actions
 
+			ul
+				li
+					a(href='/organizations/create')
+						img(src='/images/admin/organization.png' alt='organization')
+						span  Create Organization
+				li
+					a(href='/donations/create')
+						img(src='/images/admin/donate.png' alt='donation')
+						span  Create Donation
+				li
+					a(href='/users')
+						img(src='/images/admin/users.png' alt='users')
+						span  View Users
+				li
+					a(href='/organizations')
+						img(src='/images/admin/organization.png' alt='organization')
+						span  View Organizations
+				li
+					a(href='/donations')
+						img(src='/images/admin/donations.png' alt='donation')
+						span  View Donations
 
-        div#admin-actions
-            //- admin button actions to the right like create organization, assign roles, assign donations to organizations, etc.
-            div#admin-header
-                h1 Admin Actions
-            div#admin-body
-                a(href='/organizations/create') Create Organization
-                a(href='/organizations') View Organizations
-                a(href='/organizations/assign') Assign Organization Roles
-                a(href='/donations/assign') Assign Donations to Organizations
-                a(href='/donations') View Donations
-                a(href='/donations/assign') Assign Donations to Organizations
