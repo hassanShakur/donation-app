@@ -11,6 +11,9 @@ const organizationSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please provide a organization description'],
     },
+    image: {
+      type: String,
+    },
     assignedDonations: [
       {
         type: mongoose.Schema.ObjectId,

@@ -23,11 +23,13 @@ exports.getOrganizations = async (req, res) => {
 exports.getOrganization = async (req, res) => {
   try {
     const organization = await Organization.findById(req.params.id);
+    const donations = await Donation.find({ organization: organization.id });
 
     res.status(200).json({
       status: 'success',
       data: {
         organization,
+        donations,
       },
     });
   } catch (err) {

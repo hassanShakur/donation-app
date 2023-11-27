@@ -20,10 +20,10 @@ router.get('/profile', viewsController.getProfile);
 router.get('/donations/:slug', viewsController.getDonation);
 
 router.get(
-    '/organizations/create',
-    authController.restrictTo('admin'),
-    viewsController.getCreateOrganization
-    );
+  '/organizations/create',
+  authController.restrictTo('admin'),
+  viewsController.getCreateOrganization
+);
 
 router.get('/organizations', viewsController.getOrganizations);
 router.get('/organizations/:slug', viewsController.getOrganization);

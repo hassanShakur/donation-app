@@ -44,11 +44,12 @@ donationSchema.pre(/^find/, function (next) {
   // populate with user and organization
   this.populate({
     path: 'user',
-    select: 'fname lname',
+    select: 'fname lname role',
   }).populate({
     path: 'organization',
     select: 'name',
   });
+  console.log(this.organization);
   next();
 });
 
@@ -57,5 +58,5 @@ donationSchema.pre('save', function (next) {
   next();
 });
 
-const Donation = mongoose.model('donation', donationSchema);
+const Donation = mongoose.model('Donation', donationSchema);
 module.exports = Donation;

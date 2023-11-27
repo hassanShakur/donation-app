@@ -13,17 +13,19 @@ block content
             p= `Created on ${formattedDate}`
             p= `Donated by ${donation.user.fname} ${donation.user.lname}`
 
-            if !donation.isAssigned
-                form#assign-donation-form
-                        div.form-group
-                            //- hidden input to store the donation id
-                            input#donation-id(type='hidden', name='donationId', value=donation._id)
+            if loggedUser.role === 'admin'
+                if !donation.isAssigned
+                    form#assign-donation-form
+                            div.form-group
+                                //- hidden input to store the donation id
+                                input#donation-id(type='hidden', name='donationId', value=donation._id)
 
-                            label(for='organization') Organization
-                            select#organization.form-control(name='organization')
-                                option(value='') Select an organization
-                                each organization in organizations
-                                    option(value=organization._id)= organization.name
-                        button#assign-donation-submit-btn.btn.btn-primary(type='submit') Assign Donation
-            else
+                                label(for='organization') Organization
+                                select#organization.form-control(name='organization')
+                                    option(value='') Select an organization
+                                    each organization in organizations
+                                        option(value=organization._id)= organization.name
+                            button#assign-donation-submit-btn.btn.btn-primary(type='submit') Assign Donation
+
+            if donation.isAssigned
                 p= `This donation is assigned to ${donation.organization.name}`
