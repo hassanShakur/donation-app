@@ -1,0 +1,61 @@
+extends layout
+
+//- organization details page
+block content
+    div#organization-details
+        div#organization-image
+            img(src=organization.image, alt=organization.name)
+        div#organization-info
+            h2= organization.name
+            p= organization.description
+
+            - const date = new Date(organization.createdAt)
+            - const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+            p= `Created on ${formattedDate}`
+
+        div#organization-donations
+            h3 Assigned Donations
+            if organization.assignedDonations.length > 0
+                ul#donation-list
+                    each donation in orgDonations
+                        li
+                            a(href=`/donations/${donation.slug}`)
+                                img(src=donation.image, alt=donation.name)
+                                h3= donation.name
+                                p= donation.description
+            else
+                p This organization has no donations yet
+
+
+
+//- const organizationSchema = mongoose.Schema(
+//-   {
+//-     name: {
+//-       type: String,
+//-       required: [true, 'Please provide a organization name'],
+//-     },
+//-     description: {
+//-       type: String,
+//-       required: [true, 'Please provide a organization description'],
+//-     },
+//-     image: {
+//-       type: String,
+//-     },
+//-     assignedDonations: [
+//-       {
+//-         type: mongoose.Schema.ObjectId,
+//-         ref: 'Donation',
+//-       },
+//-     ],
+//-     slug: String,
+//-     createdAt: {
+//-       type: Date,
+//-       default: Date.now,
+//-       required: true,
+//-     },
+//-   },
+//-   {
+//-     toJSON: { virtuals: true },
+//-     toObject: { virtuals: true },
+//-   }
+//- );

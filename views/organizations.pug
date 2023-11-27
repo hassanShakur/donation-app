@@ -2,28 +2,27 @@ extends layout
 
 block content
     //- organizations list page
-    div#organizations
+    div#organization-list
         h1 Organizations
-        div#organizations-list
-            each organization in organizations
-                div.organization
-                    div.organization-name
-                        a(href='/organizations/' + organization._id) #{organization.name}
-                    div.organization-description
-                        p #{organization.description}
-                    div.organization-donations
-                        p #{organization.assignedDonations.length} donations
-                    div.organization-actions
-                        a(href='/organizations/' + organization._id + '/edit') Edit
-                        a(href='/organizations/' + organization._id + '/delete') Delete
-        div#organizations-actions
-            a(href='/organizations/new') New Organization
-    
 
+        div#organizations
+            if organizations.length > 0
+                each organization in organizations
+                    div.organization
+                        div.organization-image
+                            img(src=organization.image, alt=organization.name)
+                        div.organization-info
+                            h2= organization.name
+                            p= organization.description
+                            - const date = new Date(organization.createdAt)
+                            - const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+                            p= `Created on ${formattedDate}`
+                            p= `Donations: ${organization.assignedDonations.length}`
+                            a.btn.btn-primary(href=`/organizations/${organization.slug}`) View Details
+            else
+                p There are no organizations yet
+       
 
-
-//-     const mongoose = require('mongoose');
-//- const slugify = require('slugify');
 
 //- const organizationSchema = mongoose.Schema(
 //-   {
@@ -34,6 +33,9 @@ block content
 //-     description: {
 //-       type: String,
 //-       required: [true, 'Please provide a organization description'],
+//-     },
+//-     image: {
+//-       type: String,
 //-     },
 //-     assignedDonations: [
 //-       {
@@ -53,14 +55,3 @@ block content
 //-     toObject: { virtuals: true },
 //-   }
 //- );
-
-//- organizationSchema.pre('save', function (next) {
-//-   this.slug = slugify(this.name, { lower: true });
-//-   next();
-//- });
-
-//- const Organization = mongoose.model(
-//-   'organization',
-//-   organizationSchema
-//- );
-//- module.exports = Organization;
