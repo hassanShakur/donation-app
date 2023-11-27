@@ -759,7 +759,6 @@ footer p {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* gap: 1rem; */
   width: 100%;
   padding: 2rem;
 }
@@ -797,45 +796,3 @@ footer p {
   width: 30px;
   height: 30px;
 }
-
-/* Users list */
-
-
-
-
-/* extends layout
-
-
-block content
-	#admin-dashboard
-		.admin-details
-			.admin-image
-				img(src='/images/admin-1.png' alt='user')
-			.admin-name
-				h2 #{loggedUser.name}
-			.admin-email
-				h3 #{loggedUser.email}
-		.admin-actions
-			h3 Admin Actions
-
-           ul
-				li
-					a(href='/organizations/create')
-						img(src='/images/admin/organization.png' alt='organization')
-                        span  Create Organization
-				li
-					a(href='/donations/create')
-						img(src='/images/admin/donate.png' alt='donation')
-                        span  Create Donation
-				li
-					a(href='/users')
-						img(src='/images/admin/users.png' alt='users')
-                        span  View Users
-				li
-					a(href='/organizations')
-						img(src='/images/admin/organization.png' alt='organization')
-                        span  View Organizations
-				li
-					a(href='/donations')
-						img(src='/images/admin/donations.png' alt='donation')
-                        span  View Donations
