@@ -8,17 +8,14 @@ header.header
                 a(href='/search') Search
             li
                 a(href='/donate') Donate
-            li
-                a(href='/profile') Profile
-            //- logout btn logout-btn
-            li
-                button#logout-btn(type='button') Logout
-
             if loggedUser.role === 'admin'
                 li
                     a(href='/admin/dashboard') Admin
+            else
                 li
-                    a(href='/organizations/create') Create Organization
+                    a(href='/profile') Profile
+            li
+                button#logout-btn(type='button') Logout
         else
             li
                 a(href='/login') Login
