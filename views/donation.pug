@@ -11,32 +11,19 @@ block content
             - const date = new Date(donation.createdAt)
             - const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
             p= `Created on ${formattedDate}`
+            p= `Donated by ${donation.user.fname} ${donation.user.lname}`
 
-            //- button to assign donation to organization - if isAssigned is false, else show message. When clicked, show modal with list of organizations to choose from
             if !donation.isAssigned
-                button#assign-donation-btn(type='button') Assign Donation
-            else
-                p= `This donation is assigned to ${donation.organization.name}`
-
-    //- modal to assign donation to organization
-    div#assign-donation-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='assign-donation-modal-label', aria-hidden='true')
-        div.modal-dialog(role='document')
-            div.modal-content
-                div.modal-header
-                    h5#assign-donation-modal-label.modal-title Assign Donation
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
-                        span(aria-hidden='true') &times;
-                div.modal-body
-                    p= `Assign ${donation.name} to an organization`
-                    form#assign-donation-form
+                form#assign-donation-form
                         div.form-group
+                            //- hidden input to store the donation id
+                            input#donation-id(type='hidden', name='donationId', value=donation._id)
+
                             label(for='organization') Organization
                             select#organization.form-control(name='organization')
                                 option(value='') Select an organization
                                 each organization in organizations
                                     option(value=organization._id)= organization.name
-                        button#assign-donation-submit-btn.btn.btn-primary(type='submit') Assign
-                div.modal-footer
-                    button#assign-donation-cancel-btn.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
-
-
+                        button#assign-donation-submit-btn.btn.btn-primary(type='submit') Assign Donation
+            else
+                p= `This donation is assigned to ${donation.organization.name}`
