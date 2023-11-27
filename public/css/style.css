@@ -817,8 +817,8 @@ footer p {
   }
 }
 
-/* add org form */
-#organization-form-container {
+#organization-form-container,
+#donation-form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -830,7 +830,8 @@ footer p {
   margin: 3rem auto;
 }
 
-#organization-form {
+#organization-form,
+#donation-form {
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -843,26 +844,30 @@ footer p {
   width: 40vw;
 }
 
-#organization-form label {
+#organization-form label,
+#donation-form label {
   display: block;
   margin-bottom: 0.2rem;
 }
 
-#organization-form input {
+#organization-form input,
+#donation-form input {
   width: 100%;
   padding: 0.8rem 0.6rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-#organization-form textarea {
+#organization-form textarea,
+#donation-form textarea {
   width: 100%;
   padding: 0.8rem 0.6rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-#organization-form button {
+#organization-form button,
+#donation-form button {
   margin-top: 1rem;
   padding: 0 0;
   background-color: var(--sec-color);
@@ -874,6 +879,7 @@ footer p {
   padding: 1rem;
 }
 
-#organization-form button:hover {
+#organization-form button:hover,
+#donation-form button:hover {
   background-color: var(--sec-light);
 }
