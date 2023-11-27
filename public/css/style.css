@@ -21,6 +21,11 @@ ul {
   list-style: none;
 }
 
+button {
+  border: none;
+  outline: none;
+}
+
 body {
   background-color: #f5f5f5;
   min-height: 100vh;
@@ -795,4 +800,73 @@ footer p {
 .admin-actions li img {
   width: 30px;
   height: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  #admin-dashboard {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    width: 100%;
+  }
+}
+
+/* add org form */
+#organization-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: auto;
+  width: 90vw;
+  padding: 0;
+  margin: 3rem auto;
+}
+
+#organization-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  gap: 2rem;
+  background-color: #3b74b5;
+  color: #fff;
+  border-radius: 5px;
+  width: 40vw;
+}
+
+#organization-form label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+#organization-form input {
+  width: 100%;
+  padding: 0.8rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#organization-form textarea {
+  width: 100%;
+  padding: 0.8rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#organization-form button {
+  margin-top: 1rem;
+  padding: 0 0;
+  background-color: var(--sec-color);
+  color: #fff;
+  cursor: pointer;
+  width: 10rem;
+  border-radius: 5px;
+  margin-left: auto;
+  padding: 1rem;
+}
+
+#organization-form button:hover {
+  background-color: var(--sec-light);
 }

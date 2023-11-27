@@ -43,6 +43,13 @@ exports.getOrganization = async (req, res) => {
 exports.createOrganization = async (req, res) => {
   const { name, image, description } = req.body;
 
+  if (!name || !image || !description) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Please provide all required fields!',
+    });
+  }
+
   try {
     const organization = await Organization.create({
       name,
