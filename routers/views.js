@@ -17,8 +17,14 @@ router.use(authController.protect);
 router.get('/home', viewsController.getHome);
 router.get('/dashboard', viewsController.getDashboard);
 router.get('/profile', viewsController.getProfile);
-router.get('/admin/dashboard', authController.restrictTo('admin'), viewsController.getAdminDashboard);
+router.get(
+  '/admin/dashboard',
+  authController.restrictTo('admin'),
+  viewsController.getAdminDashboard
+);
 router.get('/donations/:slug', viewsController.getDonation);
+router.get('/donations', authController.restrictTo('admin'), viewsController.getDonations);
+// router.get('/donations/create', viewsController.getCreateDonation);
 
 router.get(
   '/organizations/create',

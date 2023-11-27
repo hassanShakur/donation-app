@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	div#donations
+		div#donation-items
+			h2 All donations
+
+			if donations.length === 0
+				p No donations yet!
+			else
+				ul#donation-list
+					each donation in donations
+						li
+							a(href=`/donations/${donation.slug}`)
+								img(src=donation.image, alt=donation.name)
+								h3= donation.name
+								p= donation.description

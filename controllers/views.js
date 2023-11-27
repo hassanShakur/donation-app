@@ -67,6 +67,21 @@ exports.getDonation = async (req, res) => {
   });
 };
 
+exports.getDonations = async (req, res) => {
+  const donations = await Donation.find();
+
+  res.render('donations', {
+    title: 'Donations',
+    donations,
+  });
+};
+
+exports.getCreateDonation = async (req, res) => {
+  res.render('createDonation', {
+    title: 'Create Donation',
+  });
+};
+
 exports.getCreateOrganization = (req, res) => {
   res.render('createOrganization', {
     title: 'Create Organization',
