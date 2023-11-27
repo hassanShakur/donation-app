@@ -23,6 +23,8 @@ app.use((req, res, next) => {
   next();
 });
 
+// 
+
 app.use('/api/auth', authRouter);
 app.use('/api/donations', donationsRouter);
 app.use('/api/organizations', organizationsRouter);

@@ -159,10 +159,11 @@ exports.protect = async (req, res, next) => {
   const token = req.cookies.jwt;
 
   if (!token) {
-    return res.status(401).json({
-      status: 'error',
-      message: 'Please login to continue!!',
-    });
+    // return res.status(401).json({
+    //   status: 'error',
+    //   message: 'Please login to continue!!',
+    // });
+    return res.redirect('/login');
   }
 
   jwt.verify(
@@ -170,20 +171,22 @@ exports.protect = async (req, res, next) => {
     process.env.JWT_SECRET,
     async (err, decodedToken) => {
       if (err) {
-        return res.status(401).json({
-          status: 'error',
-          message:
-            'You are not logged in!, Please login to get access.',
-        });
+        // return res.status(401).json({
+        //   status: 'error',
+        //   message:
+        //     'You are not logged in!, Please login to get access.',
+        // });
+        return res.redirect('/login');
       }
 
       const user = await User.findById(decodedToken.id);
 
       if (!user) {
-        return res.status(401).json({
-          status: 'error',
-          message: 'Token owner does not exist!',
-        });
+        // return res.status(401).json({
+        //   status: 'error',
+        //   message: 'Token owner does not exist!',
+        // });
+        return res.redirect('/login');
       }
 
       req.user = user;
