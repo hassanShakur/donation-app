@@ -1,9 +1,10 @@
 const Donation = require('../models/Donation');
+const Organization = require('../models/Organization');
 
 exports.getAllDonations = async (req, res) => {
   try {
     const donations = await Donation.find();
-    
+
     res.status(200).json({
       status: 'success',
       results: donations.length,
@@ -41,6 +42,7 @@ exports.getMyDonations = async (req, res) => {
 exports.getDonation = async (req, res) => {
   try {
     const donation = await Donation.findById(req.params.id);
+    // populate with organization
 
     res.status(200).json({
       status: 'success',
@@ -89,6 +91,38 @@ exports.deleteDonation = async (req, res) => {
       status: 'success',
       message: 'Donation deleted successfully',
       data: null,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+exports.assignDonation = async (req, res) => {
+  try {
+    const donation = await Donation.findById(req.params.id);
+    const organization = await Organization.findById(
+      req.body.organizationId
+    );
+
+    if (!donation || !organization) {
+      throw new Error('Donation or organization not found');
+    }
+
+    donation.organization = organization._id;
+    donation.isAssigned = true;
+    organization.assignedDonations.push(donation._id);
+    await donation.save();
+    await organization.save();
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Donation assigned successfully',
+      data: {
+        donation,
+      },
     });
   } catch (err) {
     res.status(400).json({

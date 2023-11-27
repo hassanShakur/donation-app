@@ -24,6 +24,10 @@ const donationSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    organization: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Organization',
+    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -37,9 +41,13 @@ const donationSchema = mongoose.Schema(
 );
 
 donationSchema.pre(/^find/, function (next) {
+  // populate with user and organization
   this.populate({
     path: 'user',
     select: 'fname lname',
+  }).populate({
+    path: 'organization',
+    select: 'name',
   });
   next();
 });

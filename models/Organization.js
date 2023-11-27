@@ -36,7 +36,7 @@ organizationSchema.pre('save', function (next) {
 });
 
 const Organization = mongoose.model(
-  'organization',
+  'Organization',
   organizationSchema
 );
 module.exports = Organization;
