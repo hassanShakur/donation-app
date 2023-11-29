@@ -25,37 +25,3 @@ block content
                                 p= donation.description
             else
                 p This organization has no donations yet
-
-
-
-//- const organizationSchema = mongoose.Schema(
-//-   {
-//-     name: {
-//-       type: String,
-//-       required: [true, 'Please provide a organization name'],
-//-     },
-//-     description: {
-//-       type: String,
-//-       required: [true, 'Please provide a organization description'],
-//-     },
-//-     image: {
-//-       type: String,
-//-     },
-//-     assignedDonations: [
-//-       {
-//-         type: mongoose.Schema.ObjectId,
-//-         ref: 'Donation',
-//-       },
-//-     ],
-//-     slug: String,
-//-     createdAt: {
-//-       type: Date,
-//-       default: Date.now,
-//-       required: true,
-//-     },
-//-   },
-//-   {
-//-     toJSON: { virtuals: true },
-//-     toObject: { virtuals: true },
-//-   }
-//- );

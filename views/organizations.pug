@@ -21,37 +21,6 @@ block content
                             a.btn.btn-primary(href=`/organizations/${organization.slug}`) View Details
             else
                 p There are no organizations yet
-       
 
-
-//- const organizationSchema = mongoose.Schema(
-//-   {
-//-     name: {
-//-       type: String,
-//-       required: [true, 'Please provide a organization name'],
-//-     },
-//-     description: {
-//-       type: String,
-//-       required: [true, 'Please provide a organization description'],
-//-     },
-//-     image: {
-//-       type: String,
-//-     },
-//-     assignedDonations: [
-//-       {
-//-         type: mongoose.Schema.ObjectId,
-//-         ref: 'Donation',
-//-       },
-//-     ],
-//-     slug: String,
-//-     createdAt: {
-//-       type: Date,
-//-       default: Date.now,
-//-       required: true,
-//-     },
-//-   },
-//-   {
-//-     toJSON: { virtuals: true },
-//-     toObject: { virtuals: true },
-//-   }
-//- );
+        a#add-btn(href='/organizations/create', title='Add Organization')
+            img(src='/images/admin/plus-btn.png', alt='add')
