@@ -1,6 +1,6 @@
 const loginForm = document.querySelector('#login-form');
 const registerForm = document.querySelector('#register-form');
-const donateForm = document.querySelector('#donate-form');
+const donateForm = document.querySelector('#donation-form');
 const createOrganizationForm = document.querySelector(
   '#organization-form'
 );
@@ -35,6 +35,8 @@ registerForm?.addEventListener('submit', (e) => {
   registerUser({ fname, lname, email, password });
 });
 
+console.log({ donateForm });
+
 donateForm?.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -63,39 +65,10 @@ assignDonationForm?.addEventListener('submit', (e) => {
 
   const organizationId =
     assignDonationForm.querySelector('#organization').value;
-    const donationId = assignDonationForm.querySelector('#donation-id').value;
+  const donationId =
+    assignDonationForm.querySelector('#donation-id').value;
 
   assignDonation(organizationId, donationId);
 });
 
 logoutBtn?.addEventListener('click', logoutUser);
-
-
-// Donation details page
-// extends layout
-
-// block content
-//     div#donation
-//         div#donation-image
-//             img(src=donation.image, alt=donation.name)
-//         div#donation-info
-//             h2= donation.name
-//             p= donation.description
-
-//             - const date = new Date(donation.createdAt)
-//             - const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-//             p= `Created on ${formattedDate}`
-//             p= `Donated by ${donation.user.fname} ${donation.user.lname}`
-
-//             if !donation.isAssigned
-//                 form#assign-donation-form
-//                         div.form-group
-//                             //- hidden input to store the donation id
-                               // input#donation-id(type='hidden', name='donationId', value=donation._id)
-//                             select#organization.form-control(name='organization')
-//                                 option(value='') Select an organization
-//                                 each organization in organizations
-//                                     option(value=organization._id)= organization.name
-//                         button#assign-donation-submit-btn.btn.btn-primary(type='submit') Assign Donation
-//             else
-//                 p= `This donation is assigned to ${donation.organization.name}`

@@ -75,6 +75,11 @@ const $ac7ca8669a3fb450$export$16015adca85344a = async ({ fname: fname, lname: l
 
 
 const $9364e95f3e432484$export$882c490fde6b3ea = async (name, image, description)=>{
+    console.log({
+        name: name,
+        image: image,
+        description: description
+    });
     try {
         const res = await fetch("/api/donations", {
             method: "POST",
@@ -156,7 +161,7 @@ const $db9d8be94c74bf47$export$5897fc3de1629af3 = async (organizationId, donatio
 
 const $d0f7ce18c37ad6f6$var$loginForm = document.querySelector("#login-form");
 const $d0f7ce18c37ad6f6$var$registerForm = document.querySelector("#register-form");
-const $d0f7ce18c37ad6f6$var$donateForm = document.querySelector("#donate-form");
+const $d0f7ce18c37ad6f6$var$donateForm = document.querySelector("#donation-form");
 const $d0f7ce18c37ad6f6$var$createOrganizationForm = document.querySelector("#organization-form");
 const $d0f7ce18c37ad6f6$var$assignDonationForm = document.querySelector("#assign-donation-form");
 const $d0f7ce18c37ad6f6$var$logoutBtn = document.querySelector("#logout-btn");
@@ -179,6 +184,9 @@ $d0f7ce18c37ad6f6$var$registerForm?.addEventListener("submit", (e)=>{
         password: password
     });
 });
+console.log({
+    donateForm: $d0f7ce18c37ad6f6$var$donateForm
+});
 $d0f7ce18c37ad6f6$var$donateForm?.addEventListener("submit", (e)=>{
     e.preventDefault();
     const name = $d0f7ce18c37ad6f6$var$donateForm.querySelector("#donation-name").value;
@@ -199,31 +207,7 @@ $d0f7ce18c37ad6f6$var$assignDonationForm?.addEventListener("submit", (e)=>{
     const donationId = $d0f7ce18c37ad6f6$var$assignDonationForm.querySelector("#donation-id").value;
     (0, $db9d8be94c74bf47$export$5897fc3de1629af3)(organizationId, donationId);
 });
-$d0f7ce18c37ad6f6$var$logoutBtn?.addEventListener("click", (0, $70af9284e599e604$export$e8df664d4863167e)); // Donation details page
- // extends layout
- // block content
- //     div#donation
- //         div#donation-image
- //             img(src=donation.image, alt=donation.name)
- //         div#donation-info
- //             h2= donation.name
- //             p= donation.description
- //             - const date = new Date(donation.createdAt)
- //             - const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
- //             p= `Created on ${formattedDate}`
- //             p= `Donated by ${donation.user.fname} ${donation.user.lname}`
- //             if !donation.isAssigned
- //                 form#assign-donation-form
- //                         div.form-group
- //                             //- hidden input to store the donation id
- // input#donation-id(type='hidden', name='donationId', value=donation._id)
- //                             select#organization.form-control(name='organization')
- //                                 option(value='') Select an organization
- //                                 each organization in organizations
- //                                     option(value=organization._id)= organization.name
- //                         button#assign-donation-submit-btn.btn.btn-primary(type='submit') Assign Donation
- //             else
- //                 p= `This donation is assigned to ${donation.organization.name}`
+$d0f7ce18c37ad6f6$var$logoutBtn?.addEventListener("click", (0, $70af9284e599e604$export$e8df664d4863167e));
 
 
 //# sourceMappingURL=main.js.map

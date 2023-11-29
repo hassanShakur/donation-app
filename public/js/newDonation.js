@@ -1,6 +1,7 @@
 import { showAlert } from './alert';
 
 export const createDonation = async (name, image, description) => {
+  console.log({ name, image, description });
   try {
     const res = await fetch('/api/donations', {
       method: 'POST',

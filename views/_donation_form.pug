@@ -1,5 +1,12 @@
-form#donate-form
-	input(type='text', id='donation-name', name='name', placeholder='Donation Name', required)
-	input(type='text', id='donation-image', name='image', placeholder='Image URL', required)
-	input(type='text', id='donation-description', name='description', placeholder='Description', required)
-	input(type='submit', value='Create')
+form#donation-form
+	div.form-group
+		label(for='donation-name') Name
+		input#donation-name.form-control(type='text', name='name', placeholder='Enter donation name')
+	div.form-group
+		label(for='donation-description') Description
+		textarea#donation-description.form-control(name='description', rows='3', placeholder='Enter donation description')
+	div.form-group
+		label(for='donation-image') Image
+		//- input#image.form-control-file(type='file', name='image')
+		input#donation-image.form-control(type='text', name='image', placeholder='Image url')
+	button#donation-submit-btn(type='submit') Create

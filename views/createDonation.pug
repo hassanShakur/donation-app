@@ -3,15 +3,4 @@ extends layout
 block content
     div#donation-form-container
         h1 Create Donation
-        form#donation-form
-            div.form-group
-                label(for='name') Name
-                input#name.form-control(type='text', name='name', placeholder='Enter donation name')
-            div.form-group
-                label(for='description') Description
-                textarea#description.form-control(name='description', rows='3', placeholder='Enter donation description')
-            div.form-group
-                label(for='image') Image
-                input#image.form-control(type='text', name='image', placeholder='Image url')
-                //- input#image.form-control-file(type='file', name='image')
-            button#donation-submit-btn(type='submit') Submit
+        include _donation_form

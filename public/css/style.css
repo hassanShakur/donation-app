@@ -339,6 +339,7 @@ footer p {
   padding: 0;
   justify-self: flex-start;
   margin: 3rem auto;
+  margin-top: 0;
 }
 
 #donation-form {
@@ -352,7 +353,7 @@ footer p {
   color: #fff;
   border-radius: 5px;
 }
-
+/* 
 #donate-form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -386,7 +387,7 @@ footer p {
 
 #donate-form input[type='submit']:hover {
   background-color: var(--sec-light);
-}
+} */
 
 #donation-list {
   display: grid;
@@ -884,6 +885,13 @@ footer p {
 #organization-form button:hover,
 #donation-form button:hover {
   background-color: var(--sec-light);
+}
+
+@media screen and (max-width: 1000px) {
+  #organization-form,
+  #donation-form {
+    width: 60vw;
+  }
 }
 
 /* Users page */
