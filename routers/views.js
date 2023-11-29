@@ -28,7 +28,7 @@ router.get(
   authController.restrictTo('admin'),
   viewsController.getDonations
 );
-// router.get('/donations/create', viewsController.getCreateDonation);
+router.get('/donate', viewsController.getCreateDonation);
 
 router.get(
   '/organizations/create',
