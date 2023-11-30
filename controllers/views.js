@@ -19,7 +19,8 @@ exports.getHome = async (req, res) => {
   res.render('home', {
     title: 'Home',
     user,
-    donations: user.role === 'admin' ? allDonations : myDonations,
+    // donations: user.role === 'admin' ? allDonations : myDonations,
+    donations: allDonations,
   });
 };
 

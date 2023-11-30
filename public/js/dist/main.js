@@ -128,7 +128,12 @@ const $fb5a0cf1308e7551$export$34c6178bfd248df3 = async (name, image, descriptio
         window.setTimeout(()=>{
             location.assign("/organizations");
         }, 1500);
-    } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
+    } else {
+        console.log({
+            data: data
+        });
+        (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
+    }
 };
 
 
