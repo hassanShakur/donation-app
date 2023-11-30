@@ -13,7 +13,6 @@ export const createOrganization = async (
   });
 
   const data = await res.json();
-  console.log(data);
 
   if (data.status === 'success') {
     showAlert('success', data.message);
@@ -22,7 +21,6 @@ export const createOrganization = async (
       location.assign('/organizations');
     }, 1500);
   } else {
-    console.log({ data });
     showAlert('error', data.message);
   }
 };

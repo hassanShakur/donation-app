@@ -49,7 +49,6 @@ donationSchema.pre(/^find/, function (next) {
     path: 'organization',
     select: 'name',
   });
-  console.log(this.organization);
   next();
 });
 

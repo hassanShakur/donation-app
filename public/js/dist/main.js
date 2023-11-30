@@ -23,7 +23,6 @@ const $70af9284e599e604$export$692b4a7cc7a486ce = async (email, password)=>{
             }
         });
         const data = await res.json();
-        console.log(data);
         if (data.status === "success") {
             (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
             window.setTimeout(()=>{
@@ -39,7 +38,6 @@ const $70af9284e599e604$export$e8df664d4863167e = async ()=>{
     try {
         const res = await fetch("/api/auth/logout");
         const data = await res.json();
-        console.log(data);
         if (data.status === "success") location.reload(true);
     } catch (err) {
         (0, $c67cb762f0198593$export$de026b00723010c1)("error", "Something went wrong!");
@@ -93,7 +91,6 @@ const $9364e95f3e432484$export$882c490fde6b3ea = async (name, image, description
             }
         });
         const data = await res.json();
-        console.log(data);
         if (data.status === "success") {
             (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
             window.setTimeout(()=>{
@@ -122,18 +119,12 @@ const $fb5a0cf1308e7551$export$34c6178bfd248df3 = async (name, image, descriptio
         }
     });
     const data = await res.json();
-    console.log(data);
     if (data.status === "success") {
         (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
         window.setTimeout(()=>{
             location.assign("/organizations");
         }, 1500);
-    } else {
-        console.log({
-            data: data
-        });
-        (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
-    }
+    } else (0, $c67cb762f0198593$export$de026b00723010c1)("error", data.message);
 };
 
 
@@ -150,7 +141,6 @@ const $db9d8be94c74bf47$export$5897fc3de1629af3 = async (organizationId, donatio
             })
         });
         const data = await res.json();
-        console.log(data);
         if (data.status === "success") {
             (0, $c67cb762f0198593$export$de026b00723010c1)("success", data.message);
             window.setTimeout(()=>{
@@ -188,9 +178,6 @@ $d0f7ce18c37ad6f6$var$registerForm?.addEventListener("submit", (e)=>{
         email: email,
         password: password
     });
-});
-console.log({
-    donateForm: $d0f7ce18c37ad6f6$var$donateForm
 });
 $d0f7ce18c37ad6f6$var$donateForm?.addEventListener("submit", (e)=>{
     e.preventDefault();

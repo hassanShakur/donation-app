@@ -10,7 +10,6 @@ export const createDonation = async (name, image, description) => {
     });
 
     const data = await res.json();
-    console.log(data);
 
     if (data.status === 'success') {
       showAlert('success', data.message);

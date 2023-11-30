@@ -13,7 +13,7 @@ exports.getIndex = async (req, res) => {
 
 exports.getHome = async (req, res) => {
   const user = req.user;
-  const myDonations = await Donation.find({ user: req.user.id });
+  // const myDonations = await Donation.find({ user: req.user.id });
   const allDonations = await Donation.find();
 
   res.render('home', {

@@ -9,7 +9,6 @@ export const loginUser = async (email, password) => {
     });
 
     const data = await res.json();
-    console.log(data);
 
     if (data.status === 'success') {
       showAlert('success', data.message);
@@ -31,7 +30,6 @@ export const logoutUser = async () => {
     const res = await fetch('/api/auth/logout');
 
     const data = await res.json();
-    console.log(data);
 
     if (data.status === 'success') location.reload(true);
   } catch (err) {

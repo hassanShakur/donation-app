@@ -14,7 +14,6 @@ export const assignDonation = async (organizationId, donationId) => {
     );
 
     const data = await res.json();
-    console.log(data);
 
     if (data.status === 'success') {
       showAlert('success', data.message);

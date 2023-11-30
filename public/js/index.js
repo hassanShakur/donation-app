@@ -35,8 +35,6 @@ registerForm?.addEventListener('submit', (e) => {
   registerUser({ fname, lname, email, password });
 });
 
-console.log({ donateForm });
-
 donateForm?.addEventListener('submit', (e) => {
   e.preventDefault();
 
