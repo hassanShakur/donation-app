@@ -1,16 +1,15 @@
 extends layout
 
-
 block content
-	#admin-dashboard
-		.admin-details
-			.admin-image
+	#dashboard
+		.details
+			.image
 				img(src='/images/admin/admin-1.png' alt='user')
-			.admin-name
+			.name
 				h2 #{loggedUser.fname} #{loggedUser.lname}
-			.admin-email
+			.email
 				h3 #{loggedUser.email}
-		.admin-actions
+		.actions
 			h3 Admin Actions
 
 			ul

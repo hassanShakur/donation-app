@@ -22,12 +22,15 @@ router.get(
   authController.restrictTo('admin'),
   viewsController.getAdminDashboard
 );
+router.get('/donations/me', viewsController.getMyDonations);
+
 router.get('/donations/:slug', viewsController.getDonation);
 router.get(
   '/donations',
   authController.restrictTo('admin'),
   viewsController.getDonations
 );
+
 router.get('/donate', viewsController.getCreateDonation);
 
 router.get(

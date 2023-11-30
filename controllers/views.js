@@ -3,25 +3,33 @@ const Organization = require('../models/Organization');
 const User = require('../models/User');
 
 exports.getIndex = async (req, res) => {
-  const donations = await Donation.find();
+  try {
+    const donations = await Donation.find();
 
-  res.render('index', {
-    title: 'Donation App',
-    donations,
-  });
+    res.render('index', {
+      title: 'Donation App',
+      donations,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getHome = async (req, res) => {
-  const user = req.user;
-  // const myDonations = await Donation.find({ user: req.user.id });
-  const allDonations = await Donation.find();
+  try {
+    const user = req.user;
+    // const myDonations = await Donation.find({ user: req.user.id });
+    const allDonations = await Donation.find();
 
-  res.render('home', {
-    title: 'Home',
-    user,
-    // donations: user.role === 'admin' ? allDonations : myDonations,
-    donations: allDonations,
-  });
+    res.render('home', {
+      title: 'Home',
+      user,
+      // donations: user.role === 'admin' ? allDonations : myDonations,
+      donations: allDonations,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getLogin = (_, res) => {
@@ -49,32 +57,59 @@ exports.getProfile = (req, res) => {
 };
 
 exports.getAdminDashboard = async (req, res) => {
-  const admin = await User.findById(req.user.id);
+  try {
+    const admin = await User.findById(req.user.id);
 
-  res.render('admin', {
-    title: 'Admin Dashboard',
-    admin,
-  });
+    res.render('admin', {
+      title: 'Admin Dashboard',
+      admin,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getDonation = async (req, res) => {
-  const donation = await Donation.findOne({ slug: req.params.slug });
-  const organizations = await Organization.find();
+  try {
+    const donation = await Donation.findOne({
+      slug: req.params.slug,
+    });
+    const organizations = await Organization.find();
 
-  res.render('donation', {
-    title: donation.name,
-    donation,
-    organizations,
-  });
+    res.render('donation', {
+      title: donation.name,
+      donation,
+      organizations,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getDonations = async (req, res) => {
-  const donations = await Donation.find();
+  try {
+    const donations = await Donation.find();
 
-  res.render('donations', {
-    title: 'Donations',
-    donations,
-  });
+    res.render('donations', {
+      title: 'Donations',
+      donations,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.getMyDonations = async (req, res) => {
+  try {
+    const donations = await Donation.find({ user: req.user.id });
+
+    res.render('donations', {
+      title: 'My Donations',
+      donations,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getCreateDonation = async (req, res) => {
@@ -90,34 +125,46 @@ exports.getCreateOrganization = (req, res) => {
 };
 
 exports.getOrganizations = async (req, res) => {
-  const organizations = await Organization.find();
+  try {
+    const organizations = await Organization.find();
 
-  res.render('organizations', {
-    title: 'Organizations',
-    organizations,
-  });
+    res.render('organizations', {
+      title: 'Organizations',
+      organizations,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getOrganization = async (req, res) => {
-  const organization = await Organization.findOne({
-    slug: req.params.slug,
-  });
-  const donations = await Donation.find({
-    organization: organization.id,
-  });
+  try {
+    const organization = await Organization.findOne({
+      slug: req.params.slug,
+    });
+    const donations = await Donation.find({
+      organization: organization.id,
+    });
 
-  res.render('organization', {
-    title: organization.name,
-    organization,
-    orgDonations: donations,
-  });
+    res.render('organization', {
+      title: organization.name,
+      organization,
+      orgDonations: donations,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getUsers = async (req, res) => {
-  const users = await User.find();
+  try {
+    const users = await User.find();
 
-  res.render('users', {
-    title: 'Users',
-    users,
-  });
+    res.render('users', {
+      title: 'Users',
+      users,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

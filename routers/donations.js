@@ -7,19 +7,22 @@ const router = express.Router();
 router
   .route('/')
   .get(donationsController.getAllDonations)
-  .post(
-    authController.protect,
-    donationsController.createDonation
-  );
+  .post(authController.protect, donationsController.createDonation);
 
-router
-  .route('/:id')
-  .get(donationsController.getDonation)
-  .delete(
-    authController.protect,
-    authController.restrictTo('admin'),
-    donationsController.deleteDonation
-  );
+router.get(
+  '/me',
+  authController.protect,
+  donationsController.getMyDonations
+);
+
+// router
+//   .route('/:id')
+//   .get(donationsController.getDonation)
+//   .delete(
+//     authController.protect,
+//     authController.restrictTo('admin'),
+//     donationsController.deleteDonation
+//   );
 
 router.patch(
   '/:id/assignDonation',
