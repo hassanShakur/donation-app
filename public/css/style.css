@@ -807,6 +807,7 @@ footer p {
   justify-self: flex-start;
   align-self: flex-start;
   margin-bottom: auto;
+  margin-bottom: 4rem;
 }
 
 .details {
@@ -852,8 +853,7 @@ footer p {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  padding: 2rem;
-  margin-bottom: 3rem;
+  padding: 2rem 1rem;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -863,6 +863,7 @@ footer p {
 .actions#account {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  padding: 2rem;
 }
 
 .actions h3 {
@@ -875,7 +876,6 @@ footer p {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  padding: 2rem;
 }
 
 .actions li {
@@ -888,6 +888,7 @@ footer p {
   border-radius: 5px;
   padding: 1rem;
   width: 100%;
+  font-size: 0.9rem;
 }
 
 .actions li:hover {
