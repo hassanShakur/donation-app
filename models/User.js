@@ -24,6 +24,7 @@ const userSchema = mongoose.Schema(
       type: String,
       default: 'user',
       required: true,
+      enum: ['user', 'admin', 'org'],
     },
   },
   {
